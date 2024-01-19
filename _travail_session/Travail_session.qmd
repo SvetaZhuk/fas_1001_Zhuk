@@ -9,8 +9,8 @@ editor: visual
 
 ## Problématique
 
-## Données et méthodes 
+## Données et méthodes
 
 ## Résultats
 
-# Conclusion 
+# Conclusion
