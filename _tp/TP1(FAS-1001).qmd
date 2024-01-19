@@ -1,8 +1,7 @@
 ---
 title: "TP1(FAS-1001)"
 author: Svetlana Zhuk
-date: 18 Jan 2024 
+date: 2024-01-18
 format: pdf
 editor: visual
 ---
-
