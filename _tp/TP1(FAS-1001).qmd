@@ -6,3 +6,40 @@ format: pdf
 editor: visual
 ---
 
+# Git branch
+
+![git branch](fig/2_branch.jpeg)
+
+- Les étapes pour créer la branche :
+  - **ls** : cette commande m'a permis de trouver ce qu'il y a à l'intérieur de mon ordinateur
+  - **cd Dropbox** : cette commande m'a permis de choisir le fichier dans lequel j'ai cloné le fichier depuis GitHub
+  - **ls** : pour afficher les fichiers dans Dropbox
+  - **cd fas_1001_Zhuk** :J'ai choisi le fichier cloné dans lequel se trouve le fichier TP1
+  - **git branch** : cette commande nous permet de vérifier sur quelle branche nous travaillons
+  - **git branch ma_branche_Zhuk** : J'ai créé une autre branche sur laquelle je souhaite travailler pour ne pas modifier les documents sur la branche principale
+  - **git checkout ma_branche_Zhuk**: pour changer la branche principale en ma branche Zhuk
+  - **git branch** : pour vérifier davantage que nous travaillons sur ma branche
+
+- Pourtant je me suis rendue compte que dans TP1, la tâche 2 explique le nom de la branche, donc je dois changer
+
+# Git branch new 
+
+![git branch_new](fig/2_branch_new.png){width=60%}
+
+- comment j'ai changé le nom de la branche : 
+  - **git branch** : pour vérifier sur quelle branche je travaille
+  - **git branch -m fas_1001_zhuk**: pour réécrire le nom de la branche
+  - **git branch** : pour vérifier que le nom de la branche est bien changé
+  
+  
+# Git log : historique 
+
+![historique](fig/7_historique_git.png){width=60%}
+  
+- **git add .** : cette commande nous permet d'ajouter les modifications que j'ai faites dans le .qmd TP1(FAS-1001)
+- **git commit -m"Premier commit"**: cette commande nous permet d'enregistrer les modifications et d'ajouter un message
+- **git add .** : J'ai fait des modifications dans la doc. travail de session, j'ajoute donc de nouvelles modifications
+- **git commit -m"Création du document du travail de session"**: J'enregistre les modifications et ajoute le message
+- **git log** : pour vérifier les commits que j'ai effectués sur ma branche
+  
+  
