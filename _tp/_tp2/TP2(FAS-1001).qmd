@@ -1,0 +1,195 @@
+---
+title: "TP2: Étude de l’effet du taux de chômage sur l’appui à l'immigration au Canada : Comparaison entre 2019 et 2021 (Option 1)"
+author: Svetlana Zhuk
+date: 2024-02-04
+format: pdf
+editor: visual
+---
+
+# Introduction
+
+Les opinions publiques sur l'immigration évoluent au fil du temps. Si le Canada est généralement connu pour ses attitudes positives à l'égard de l'immigration, même ici, ces attitudes varient. L'explication de ces changements est un domaine de recherche actif, mais les facteurs sociétaux ou économiques à l'origine de cette évolution ne sont toujours pas clairs. 
+Par exemple, Mayda (2006) affirme que les attitudes anti-immigration peuvent être rationalisées et sont souvent enracinées dans la compétition pour des ressources rares avec les immigrants [Mayda, 2006](https://direct.mit.edu/rest/article/88/3/510/57623/Who-Is-Against-Immigration-A-Cross-Country). Dans ce travail, j'explore une question connexe, celle de l'influence économique sur la perception de l'immigration par le public.
+
+J'émets l'hypothèse qu'une augmentation du chômage peut diminuer les perceptions positives à l'égard de l'immigration au Canada. Étant donné que le Canada a connu un changement dans son taux de chômage, passant de 5,66 % en 2019 à 7,46 % en 2021, il sera intéressant d'étudier si ce changement dans le taux de chômage a influencé les changements d'attitudes à l'égard de l'immigration.
+
+J'aimerais comparer les attitudes entre ces deux années, en me concentrant sur la question de recherche exposée.
+
+- Comment l'augmentation du taux de chômage entre 2019 et 2021 a-t-elle influencé les attitudes des Canadiens à l'égard de l'immigration ?
+
+Pour répondre à ma question de recherche, j'utilise des données provenant de deux sources : les enquêtes Democracy Checkup et les données de la Banque mondiale. The Democracy Checkup surveys menées en [2019](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_PCC0LS.xml) (*5067 observations*) and [2021](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_C1IQVC.xml) (*7949 observations*) au Canada sont des enquêtes en ligne qui recueillent l'opinion du grand public sur les valeurs démocratiques, les politiques publiques et les questions d'actualité. Un échantillon en ligne de la population générale canadienne a été obtenu par l'intermédiaire de Leger, en utilisant des quotas indépendants pour les catégories d'âge, le sexe et la province, conformément au recensement canadien de 2016. Cette méthodologie de collecte de données me permet d'incorporer la variable **immigration_level** et de décrire la généralisation à l'opinion publique.
+
+En outre, j'incorpore des données de la [World Bank](https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS), en me concentrant spécifiquement sur les données d'observation du taux de chômage au Canada en 2019 et 2021. La Banque mondiale recueille des ensembles de données internationales basées sur les données générées par les systèmes statistiques nationaux, ce qui en fait une source essentielle de données macroéconomiques.
+
+## Données et méthodes
+
+J'ai utilisé trois variables clés : **"immigration_level"**, **"unemployment"**, **"proportions"**. Les variables **"immigration_level"** and **"unemployment"** proviennent toutes deux de trois ensembles de données. La variable **"proportions"** a été créée pour tenir compte de la différence de nombre d'observations entre deux ensembles de données de Democracy Checkup. La variable **"year "** a permis de fusionner ces ensembles de données.
+
+1. Pour commencer, la variable **"immigration_level"** provient de deux bases de données d'enquêtes en ligne : Democracy Checkup 2019 (dat_2019) et Democracy Checkup 2021 (dat_2021), qui ont été fusionnées en un seul ensemble de données (Data_clean). L'enquête posait la question suivante : 'Do you think Canada should admit... [immigrants]?' Initialement, cette variable était numérique. Je l'ai convertie en variable catégorielle. Cela me permet de visualiser la différence entre les catégories.  
+
+- 1 - 'More'
+- 2 - 'Fewer'
+- 3 - 'About the same
+
+J'ai filtré les réponses catégorisées comme "Je ne sais pas" et "-99". En outre, j'ai créé une nouvelle colonne **"year"** pour faciliter la fusion de cet ensemble de données avec celui contenant la variable "chômage".
+
+2. La variable **"unemployment"** pour les années 2019 et 2021 a été obtenue à partir des ensembles de données d'observation de la Banque mondiale (metadata). 
+
+Pour obtenir les données sur le chômage pour 2019 et 2021, j'ai sélectionné ces années spécifiques et filtré sur le Canada. (metadata_can_unemployment). J'ai ensuite utilisé la fonction *pivot_longer* pour transformer les données, en créant de nouvelles colonnes pour **"unemployment"** and **"year"**. La colonne "year" a servi de colonne clé entre les ensembles de données "Data_clean" et "metadata_can_unemployment" pour produire un nouvel ensemble de données "Data_combined". 
+
+La variable "unemployment" étant numérique, je l'ai traitée comme une variable catégorielle pour l'un des graphiques en utilisant la fonction *as.factor()*.
+
+3. La variable **"proportions "** a été créée pour tenir compte des différences dans le nombre total d'observations entre les deux ensembles de données de Democracy Checkup.
+
+Pour ce faire, le nombre total d'observations pour chaque catégorie de "immigration_level" (count) a été divisé par le nombre total d'observations dans les deux ensembles de données, puis multiplié par 100. La nouvelle colonne "proportions" a été générée. Cette colonne sera utilisée pour la visualisation sur l'axe Y.
+
+Pour étudier la question de recherche, une analyse du croisement entre deux variables a été réalisée : unemployment rates and the proportions within the immigration_level categories.
+
+Une description plus détaillée du processus de nettoyage des données se trouve dans l'Annexe : code de nettoyage
+
+## Les résultats
+
+
+![Option 1](~/Dropbox/fas_1001_Zhuk/_tp/_tp2/figures/final/can_imm_att.png)
+
+Pour produire ce graphique, j'ai utilisé la variable unemployment sur l'axe X, qui provient des métadonnées d'observation des données de la Banque mondiale. Sur l'axe des ordonnées se trouve la variable proportions, qui a été calculée sur la base des données de la variable immigration_level, dérivée des données de l'enquête en ligne Democracy CheckUp. Les changements d'attitude sont représentés par des lignes, chacune correspondant à une catégorie au sein de la variable immigration_level.
+
+Les résultats sont intrigants : l'augmentation du taux de chômage de 5,66 % à 7,46 % n'a pas entraîné une diminution du soutien à l'immigration. Au contraire, dans la catégorie "Canada should admit more immigrants," nous avons observé une augmentation de 13,6 % à 20,3 %. Pour la catégorie "Canada should admit fewer immigrants," il y a eu une diminution de 44,3 % à 31,6 %. En outre, la catégorie "Canada should admit about the same number of immigrants as now" a augmenté, passant de 42 % à 48 %. Ces résultats remettent en question mon hypothèse initiale selon laquelle un taux de chômage plus élevé diminuerait le soutien à l'immigration. Une analyse plus approfondie est nécessaire pour comprendre si les changements d'attitude à l'égard de l'immigration pendant les périodes de chômage accru sont différenciés par classe, en particulier parmi les travailleurs peu qualifiés, comme le suggère l'étude de [Finseraas et al. 2014](https://journals.sagepub.com/doi/full/10.1111/1467-9248.12162). 
+
+Une analyse similaire est présentée dans le graphique à barres, sans la variable du chômage.
+
+![Option 2](~/Dropbox/fas_1001_Zhuk/_tp/_tp2/figures/final/can_imm_att_bars.png)
+
+
+### Annexe : code de nettoyage 
+
+```{r}
+#1. Libraries
+
+library(tidyverse)
+library(dplyr)
+
+```
+
+```{r}
+#2. Data
+
+dat_2019 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp2/Data/cora-cdem-2019_F1.csv") #Democracy Checkup, 2019 [Canada]
+
+dat_2021 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp2/Data/cora-cdem-2021_F1.csv") #Democracy Checkup, 2021 [Canada]
+
+metadata_can <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp2/Data/API_SL.UEM.TOTL.ZS_DS2_en_csv_v2_6508308.csv", skip = 4) #The World Bank Data Unemployment
+```
+```{r}
+# 3 Nettoyage de variables 
+## 3.1 Democracy Checkup, 2019 [Canada]
+
+# Vérification des observations
+
+dat_2019 |> select(immigration_level) |> 
+  table()
+
+# Je change les nombres en noms de catégories dans la variable "immigration_level" avec une fonction case_when, et j'élimine la catégorie "I don't know"
+
+dat_2019_imm <- dat_2019 |> mutate(immigration_level = case_when(
+  immigration_level == 1 ~ "More", 
+  immigration_level == 2 ~ "Fewer", 
+  immigration_level == 3 ~ "About the same as now")) |> select(immigration_level) |> 
+  filter(immigration_level != 4) 
+
+# Vérification des observations
+
+dat_2019_imm |> table()
+
+# Création d'une nouvelle colonne "year"
+
+dat_2019_imm <- dat_2019_imm |> mutate(year = "2019")
+```
+
+
+```{r}
+# 3 Nettoyage de variables 
+## 3.2 Democracy Checkup, 2021 [Canada]
+
+# Vérification de la variable
+
+table(dat_2021$dc21_imm_level)
+
+# Je change le nom de la variable par le même nom que dans la base de données 2019 "immigration_level", je change les numéros en noms de catégories dans la variable "immigration_level" avec une fonction case_when, et j'élimine la catégorie "-99"
+
+dat_2021_imm <- dat_2021 |> mutate(immigration_level = case_when(
+  dc21_imm_level == 1 ~ "More", 
+  dc21_imm_level == 2 ~ "Fewer", 
+  dc21_imm_level == 3 ~ "About the same as now")) |> 
+  select(immigration_level) |> 
+  filter(immigration_level != "-99")
+
+# Vérification de la variable
+
+dat_2021_imm |> table(useNA ="always")
+
+# Création d'une nouvelle colonne "year"
+
+dat_2021_imm <- dat_2021_imm |> mutate(year = "2021")
+
+```
+
+```{r}
+# 3 Nettoyage de variables 
+## 3.3 The World Bank Data Unemployment
+
+# Je choisis les données basées sur le Canada pour les années 2019 et 2021
+
+metadata_can_unemployment <- metadata_can |> 
+  select(`Country Name`, `2019`, `2021`) |> 
+  filter(`Country Name` == "Canada")
+
+# Changer les données de plus larges à plus longues
+
+metadata_can_unemployment_longer <- metadata_can_unemployment |> 
+  pivot_longer(cols = starts_with(c("2019", "2021")),
+               names_to = "year", 
+               values_to = "unemployment")
+
+# Verification 
+
+metadata_can_unemployment_longer |> head()
+```
+
+
+```{r}
+#4. Fusion des données: Democracy Checkup, 2019, 2021 [Canada]
+
+Data_clean <- bind_rows(dat_2019_imm, dat_2021_imm)
+
+# Vérifier que les variables se sont bien jointes
+
+Data_clean |> select(year, immigration_level) |> 
+  table()
+```
+
+```{r}
+# 4.1 Fusion des données: Democracy Checkup, 2019, 2021 [Canada] + The World Bank Data Unemployment
+
+Data_combined <- left_join(Data_clean, metadata_can_unemployment_longer, by = c("year"))
+
+# Verification 
+
+Data_combined |> select(immigration_level, unemployment) |> 
+  table()
+```
+
+```{r}
+# 5: créer un nouvel ensemble de données avec une nouvelle colonne pour calculer les proportions
+# This code was based on ChatGPT suggestion
+
+data_clean_proportions <- Data_combined |>
+  filter(!is.na(immigration_level)) |> 
+  group_by(year, immigration_level) |> 
+  summarize(count = n(), unemployment = first(unemployment), .groups = "keep") |> 
+  group_by(year) |> 
+  mutate(total = sum(count), proportion = count / total * 100)
+```
+
+
+
