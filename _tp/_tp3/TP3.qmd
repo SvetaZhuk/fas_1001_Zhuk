@@ -1,0 +1,139 @@
+---
+title: "Analyse de données textuelles"
+author: Svetlana Zhuk
+Date: 2024-02-14
+format: pdf
+editor: visual
+---
+
+## 1. Introduction 
+
+En 1982, la Loi constitutionnelle de 1982 est adoptée par le Canada sans le consentement du Québec. Brian Mulroney, député du Parti progressiste-conservateur, promet au Québec une stratégie visant à l'intégrer dans l'Acte constitutionnel et à reconnaître son caractère distinct. En 1984, Brian Mulroney remporte les élections et forme le 33e Parlement. Notre objectif est d'analyser le premier mois de travail de la 33e législature et d'identifier les sujets les plus discutés. Notre question de recherche est donc la suivante :
+
+- Quelles ont été les principales discussions menées par Brian Mulroney au cours du premier mois de la 33e législature ? 
+
+Pour répondre à cette question, nous utilisons des ensembles de données parlementaires contenant des transcriptions de débats fournies par [LIPAD](https://www.lipad.ca). Le mois qui nous intéresse est novembre 1984.
+
+
+## 2. Les données et nettoyage 
+
+Les données utilisées sont des débats transcrits du Parlement du Canada, ce qui nous permet d'effectuer une analyse des données textuelles. Pour mieux comprendre les discussions politiques, nous utiliserons le [lexicoder dictionary](https://www.snsoroka.com/data-lexicoder). 
+
+Ce dictionnaire facilite l'analyse automatisée des textes et est une source ouverte et gratuite. Pour permettre une analyse plus nuancée qui tienne compte du contexte, nous avons également développé la catégorie "Québec" afin d'examiner la fréquence des discussions liées à la situation du Québec au Parlement.
+
+Dans les sections suivantes, nous détaillons les processus de nettoyage des données, de fusion des ensembles de données, d'intégration des dictionnaires et de représentation graphique.
+
+
+```{r, echo=FALSE}
+# libraries 
+
+library(crayon)
+library(quanteda)
+devtools::install_github("clessn/clessnverse")
+library(clessnverse) 
+library(tidyverse)
+suppressMessages(library(tidyverse))
+
+```
+```{r}
+#dictionary 
+
+lexicoder_en <- dictionary(file = "~/Dropbox/fas_1001_Zhuk/_tp/_tp3/dictionary/policy_agendas_english.lcd", format = "yoshikoder")
+
+```
+
+```{r}
+#new_dictionary_Québec 
+
+quebec_dictionary <- list(quebec = c("sign", "patriation", "referendum", "veto", "federalism", "recogition", "sovereignty", "constitutional*conference", "language*rights", "cultural*identity")) |> 
+  dictionary()
+```
+
+```{r}
+#fusionner deux dictionnaires 
+
+lexicoder_en_m <- lexicoder_en |> stack()
+quebec_dictionary_m <- quebec_dictionary |> stack()
+new_dictionary <- bind_rows(lexicoder_en_m, quebec_dictionary_m) |> 
+  unstack(values ~ ind) |> 
+  dictionary()
+```
+
+```{r, echo=FALSE}
+#data_parlement 
+
+data_parl_1 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-5.csv")
+data_parl_2 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-6.csv")
+data_parl_3 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-7.csv")
+data_parl_4 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-8.csv")
+data_parl_5 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-9.csv")
+data_parl_6 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-13.csv")
+data_parl_7 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-14.csv")
+data_parl_8 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-15.csv")
+data_parl_9 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-16.csv")
+data_parl_10 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-19.csv")
+data_parl_11 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-20.csv")
+data_parl_12 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-21.csv")
+data_parl_13 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-22.csv")
+data_parl_14 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-23.csv")
+data_parl_15 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-26.csv")
+data_parl_16 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-27.csv")
+data_parl_17 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-28.csv")
+data_parl_18 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-29.csv")
+data_parl_19 <- read_csv("~/Dropbox/fas_1001_Zhuk/_tp/_tp3/data/1984/11/1984-11-30.csv")
+
+```
+
+```{r}
+#fusion des bases de donnes
+
+data_parl_merged <- bind_rows(
+  data_parl_1, data_parl_2, data_parl_3, data_parl_4, data_parl_5, data_parl_6, data_parl_7, data_parl_8, 
+                              data_parl_9, data_parl_10, data_parl_11, data_parl_12, data_parl_13, data_parl_14, 
+                              data_parl_15, data_parl_16, data_parl_17, data_parl_18, data_parl_19)
+
+```
+
+```{r}
+data_parl_clean <- data_parl_merged |> 
+  select(speechdate, speechtext, speakername) |> 
+  mutate(speechtext = tolower(speechtext)) |>  #lowercase 
+  na.omit() # remove missing variables
+```
+
+```{r}
+#analyse du dictionnaire 
+
+nov_1984 <- run_dictionary(data = data_parl_clean,
+               text = speechtext,
+               dictionary = new_dictionary) |>
+  bind_cols(data_parl_clean) |> 
+  select(-c(doc_id, speechtext)) |> 
+  pivot_longer(!c(speechdate, speakername), 
+               names_to = "category",
+               values_to = "n") |> 
+  ungroup() |> 
+  na.omit() |> 
+  filter(speakername == "Martin Brian Mulroney") |> 
+  group_by(category) |> 
+  summarise(total = sum(n, na.rm = TRUE)) |> 
+  ungroup() |> 
+  mutate(prop = round(total/sum(total), 4)*100) |> 
+  slice_max(total, n = 10)
+
+```
+
+
+
+## 3. Résultats 
+
+![Fig. 1](~/Dropbox/fas_1001_Zhuk/_tp/_tp3/fig/final/graph_mulroney.png)
+Dans nos résultats, nous mettons en évidence les principales catégories discutées par Brian Mulroney au cours du premier mois de novembre, qui marque le début de la 33e législature après qu'il a formé un gouvernement. Le sujet le plus fréquemment abordé est la macroéconomie, probablement lié aux discussions sur les accords de libre-échange avec les États-Unis. Cela conduit à des discussions plus approfondies et à des analyses détaillées dans la catégorie "macroéconomie". Cependant, la catégorie "Québec", un autre domaine d'intérêt, n'est pas apparue dans les discussions les plus importantes. Il est probable que les mots-clés que nous avons sélectionnés pour la catégorie "Québec" n'ont pas permis de capturer de manière adéquate les discussions relatives à l'accommodement du Québec. Par conséquent, il est nécessaire d'affiner la catégorie "Québec" dans notre dictionnaire.
+
+
+
+## Bibliographie
+
+- Beelen, K., Thijm, T. A., Cochrane, C., Halvemaan, K., Hirst, G., Kimmins, M., Lijbrink, S., Marx, M., Naderi, N., Rheault, L., Polyanovsky, R., and Whyte, T. (2017). "Digitization of the Canadian Parliamentary Debates." Canadian Journal of Political Science, 50(3), 849–864. https://doi.org/10.1017/S0008423916001165.
+
+- Albugh, Quinn, Julie Sevenans and Stuart Soroka. 2013. Lexicoder Topic Dictionaries, June 2013 versions, McGill University, Montreal, Canada.
