@@ -1,0 +1,70 @@
+---
+title: "Plan de recherche"
+author: Svetlana Zhuk
+format: pdf
+editor: visual
+---
+
+## Question de recherche :
+
+-   Quelle est la composition générationnelle de la Chambre des communes au Canada, ainsi que des Assemblées législatives de l'Ontario et du Québec, entre 1963 et 2021 ? Quelles implications cette composition peut-elle avoir eues sur les priorités et les résultats politiques ?
+
+## Les raisons de la recherche
+
+En 2015, Justin Trudeau, l'actuel Premier ministre du Parti libéral, a promis de réparer "le système électoral défaillant du pays" en passant du scrutin majoritaire à un tour à une représentation plus proportionnelle afin que les votes soient reflétés plus fidèlement à la Chambre des communes (Carmichael 2017).
+
+François Legault, l'actuel Premier ministre du Québec issu de la CAQ, a fait une promesse similaire : lors de l'élection de 2018, M. Legault a promis de réformer le système électoral en passant du scrutin majoritaire à un tour à un système électoral mixte de la représentation proportionnelle (Sidhartha 2022).
+
+En théorie, un mode de scrutin proportionnel permettrait une meilleure représentation et une plus grande visibilité des petits partis concurrents, comme ceux composés de politiciens de la génération Millennials et de la génération Z, qui se concentrent souvent sur des questions essentielles pour ces générations. Cependant, tant au niveau fédéral que provincial au Québec, ces promesses ne sont toujours pas tenues. Les raisons pour lesquelles ces promesses n'ont pas été tenues sont au mieux ondulantes, comme "le statu quo servirait mieux les Québécois" (dans le cas de Legault) et le fait de souligner que le scrutin proportionnel permettrait à des "voix marginales" d'entrer au Parlement (Rands 2017).
+
+Qu'en est-il de la représentation ? Si les Millennials et la Génération Z n'ont pas leur parti politique, peut-être que d'autres partis peuvent aborder les questions concernant ces générations ? Une analyse révèle que les gouvernements canadiens dépensent entre 33 321 et 40 152 dollars par personne âgée de 65 ans et plus, entre 13 635 et 14 800 dollars par personne âgée de 45 à 64 ans, et entre 10 406 et 11 614 dollars par personne âgée de moins de 45 ans (Kershaw et Anderson 2016).
+
+Abacus Data montre qu'il existe un conflit générationnel concernant les problèmes les plus importants auxquels le Canada est confronté. Pour 57 % des baby-boomers et 42 % des membres de la génération X, les soins de santé sont un enjeu majeur. En revanche, la génération Z se préoccupe davantage de l'accessibilité du logement, 54 % des membres de la génération Z et 51 % des milléniaux considérant qu'il s'agit d'une préoccupation essentielle. En outre, il existe un clivage permanent sur des questions telles que le changement climatique et l'environnement (Kishchuk 2023).
+
+Le 16 avril 2024, le gouvernement présentera un nouveau budget fédéral qui indiquera les allocations et éventuellement les "préférences générationnelles". Dans le budget 2023, l'un des postes les plus importants et à la croissance la plus rapide est la sécurité vieillesse : 69 milliards de dollars en 2022-23, qui devraient atteindre 96,6 milliards de dollars en 2027-28, soit une augmentation de 40 % en cinq ans (The Globe and Mail 2023).
+
+Alors, qui s'occupera des questions importantes pour les Millennials et la Génération Z ? Munger, dans son livre "Generation Gap", montre que le Congrès des États-Unis est principalement composé de la génération des baby-boomers, qui détient le pouvoir politique Les institutions politiques et le système de vote uninominal à un tour sont probablement un obstacle pour un nouveau parti représentant les jeunes générations (Munger 2022). Munger prévient que les partis, composés principalement de personnes plus âgées, sont plus susceptibles de répondre aux besoins de leurs électeurs âgés (Munger 2022, 47).
+
+Nous proposons de mener une analyse descriptive de la composition de la Chambre des communes au Canada, suivie d'un examen de la composition générationnelle au sein des assemblées législatives provinciales, en nous concentrant plus particulièrement sur le Québec et l'Ontario. Nous proposons d'étudier la période 1964-2021. L'année de départ est celle où les premiers baby-boomers sont devenus éligibles à la participation politique à l'âge de 18 ans. Cela nous permettra de retracer le début de leur carrière politique et de déterminer la durée de leur service au Parlement.
+
+La question de recherche est la suivante :
+
+**Quelle est la composition générationnelle de la Chambre des communes au Canada, ainsi que des Assemblées législatives de l'Ontario et du Québec, entre 1963 et 2021 ? Quelles implications cette composition peut-elle avoir eues sur les priorités et les résultats politiques ?**
+
+Cette analyse descriptive vise à sensibiliser à la composition générationnelle de nos institutions politiques et à leur représentation. L'objectif principal est d'analyser la répartition par âge et la composition générationnelle de ces institutions afin de comprendre comment elles influencent l'élaboration des politiques, en se concentrant particulièrement sur les questions auxquelles les différentes générations accordent la priorité.
+
+## Les données
+
+Pour répondre à notre question de recherche, nous utiliserons deux ensembles de données : l'un pour la composition fédérale de la Chambre des communes et l'autre pour la composition provinciale des assemblées nationales.
+
+Pour la composition générationnelle des assemblées nationales du Québec et de l'Ontario, nous utiliserons l'ensemble de données 'Provincial Parliamentary Biographies' de Rivard et al, 2024.
+
+Cet ensemble de données d'observation fournit des informations électorales sur les législateurs de quatre provinces canadiennes depuis la création de leurs assemblées coloniales au XVIIIe siècle, soit plus de 7 000 législateurs de l'Ontario, du Québec, du Nouveau-Brunswick et de la Nouvelle-Écosse. Nous nous concentrerons sur le Québec et l'Ontario. Les variables dont nous aurons besoin sont l'année de naissance pour analyser la cohorte générationnelle, l'année d'élection du législateur pour connaître son âge au début de sa carrière politique et l'année de sortie pour déterminer combien de temps le député est resté à l'Assemblée nationale.
+
+Pour analyser la composition de la cohorte générationnelle au niveau fédéral à la Chambre des Communes, nous utiliserons l'ensemble de données d'observation fourni par le Parlement du Canada, connu sous le nom de "Parlinfo". La variable 'Date de naissance' nous permettra de déterminer la cohorte générationnelle de chaque parlementaire. La variable 'Années de service' indique la durée du mandat d'un député à la Chambre des Communes. La variable 'Chambre des Communes' indique la période entre le début et la fin de la carrière politique. En outre, nous devrons nettoyer et analyser les données afin d'établir avec précision le début de chaque carrière politique, en créant une variable distincte pour le début des carrières politiques.
+
+## Méthodes mobilisées :
+
+Notre étude sera basée sur une analyse quantitative des ensembles de données présentés, en se concentrant sur les statistiques descriptives telles que la moyenne, la médiane et autres. Cela nous permettra de généraliser et de décrire la composition des cohortes générationnelles des institutions politiques aux niveaux fédéral et provincial. Nous utiliserons la visualisation pour comparer les données entre les cohortes générationnelles et rendre les résultats accessibles.
+
+## Bibliographie :
+
+Pour organiser ces références par ordre alphabétique des auteurs ou des sources :
+
+-   Banerjee, Sidhartha. 2022. «CAQ Leader Rejects Electoral Reform on Campaign Trail, Says He Will Work with Other Quebec Parties». CBC News. 27 septembre 2022. Consulté le 10 mars 2024. <https://www.cbc.ca/news/canada/montreal/legault-electoral-reform-1.6597622>.
+
+-   Carmichael, Kelly. 2017. «Broken Trust on Electoral Reform». Policy Options. Consulté le 10 mars 2024. <https://policyoptions.irpp.org/magazines/february-2017/broken-trust-on-electoral-reform/>.
+
+-   The Globe and Mail. 2023. «Globe Editorial: Budget 2023: The Growing Generation Gap between What Ottawa Spends on Older and Younger Canadians», 20 mars 2023. Consulté le 10 mars 2024. <https://www.theglobeandmail.com/opinion/editorials/article-mind-the-growing-generation-gap/>.
+
+-   Kershaw, Paul, et Lynell Anderson. 2016. «Measuring the age distribution in Canadian social spending». Canadian Public Administration 59 (4): 556‑79. <https://doi.org/10.1111/capa.12193>.
+
+-   Kishchuk, Oksana. 2023. «Gen Z - Top Issues Facing Canada». Abacus Data (blog). 31 août 2023. Consulté le 10 mars 2024. <https://abacusdata.ca/genz-top-issues-facing-canada/>.
+
+-   Munger, Kevin M. 2022. Generation Gap: Why the Baby Boomers Still Dominate American Politics and Culture. New York: Columbia University Press.
+
+-   Parliament of Canada. «Parlinfo». Consulté le 10 mars 2024. <https://lop.parl.ca/sites/ParlInfo/default/en_CA/People/parliamentarians>.
+
+-   Rands, Chris. 2017. «Do You Think Kellie Leitch Should Have Her Own Party?" Trudeau Asks Electoral Reform Advocate». CBC News. 10 février 2017. Consulté le 10 mars 2024. <https://www.cbc.ca/news/politics/electoral-reform-trudeau-leitch-1.3975354>.
+
+-   Rivard, Alexandre, Marc André Bodet, Jean-François Godbout, et Éric Montigny. 2024. «Provincial Parliamentary Biographies». Harvard Dataverse. <https://doi.org/10.7910/DVN/LZPEFQ>.

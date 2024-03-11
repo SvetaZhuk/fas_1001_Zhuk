@@ -47,4 +47,4 @@ ggsave(graph_mulroney,
        bg = "white",
        units = "cm",
        height = 10, 
-       width = 20)
+       width = 20)ss
