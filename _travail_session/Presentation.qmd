@@ -1,0 +1,178 @@
+---
+title: "Générations au Pouvoir:"
+subtitle: "Analyse descriptive de la Composition Générationnelle des Assemblées Législatives du Québec et de l'Ontario" 
+format:
+  clean-revealjs: 
+    slide-number: true
+author: Svetlana Zhuk 
+editor: visual
+---
+
+## 
+
+::: columns
+::: column
+![](fig/Kevin_Munger.jpeg)
+:::
+
+::: column
+![](fig/book_cover.jpeg){width="70%"}
+:::
+:::
+
+## Problématique de recherche : 
+
+**Priorités Générationnelles :** (Abacus Data 2023)
+
+- **Baby-Boomers & Gén X **: Soins de santé primordiaux (57% & 42%).
+- **Gén Z & Millennials** : 
+  - Logement (54% & 51%)
+  - Environnement au cœur des préoccupations
+  
+**Dépenses Gouvernementales au Canada:** (Kershaw et Anderson 2016)
+
+- 65 ans et plus : $33 321 - $40 152
+- de 45 à 64 ans : $13 635 - $14 800 
+- Moins de 45 ans : $10 406 - $11 614 
+
+- - Focalisation sur les allocations vers les âges plus avancés
+
+## 
+
+![](fig/graph_20.png)
+
+##
+
+![](fig/graph_21.png)
+
+## Influence de l'Âge sur la Politique Publique : {.smaller}
+
+- Vallée-Dubois (2023): 
+  - Âge influençant les attitudes envers les dépenses publiques; 
+  - préférences pour le transport chez les aînés vs. éducation/environnement
+  - Gens de 40 ans: Favorables aux services pour aînés.
+  
+- McClean (2019): 
+  - Âge des élus modifie les priorités
+  - les jeunes maires donnent la priorité à la protection des enfants plutôt qu’aux personnes âgées.
+  
+- Munger (2022): "Generation Gap" 
+  - la domination des baby-boomers au Congrès des États-Unis, influençant les politiques en faveur des aînés.
+  - limite la représentation des jeunes générations.
+  
+## 
+
+&nbsp;
+
+&nbsp;
+
+
+
+::: {style="text-align: center;"}
+Quelle est la composition générationnelle des Assemblées législatives de l'Ontario et du Québec, entre 1961 et 2021 ?
+:::
+
+## Données et méthodes
+
+
+ - **Rivard, Alexandre, Marc André Bodet, Jean-François Godbout, et Éric Montigny. 2024. «Provincial Parliamentary Biographies». Harvard Dataverse. <https://doi.org/10.7910/DVN/LZPEFQ>. **
+ 
+ - 17 038 observations et 48 variables
+ 
+- Variables d'intérêt :
+  - *first_last* pour les noms des députés,
+  - *province* pour les comparaisons entre provinces
+  - *year_of_birth*
+  - *year* marquant le début de la carrière politique
+  - *exit_year* représentant la fin de la carrière politique, nous avons créé de nouvelles variables
+  
+## les variables que j'ai créées : {.smaller}
+
+- **gen_cohort**: en fonction de leur *year_of_birth* dans des cohortes générationnelles.
+  - the Strauss-Howe Generational Theory Theory
+  
+- **year_range**: les années des cohortes générationnelles
+
+- **years_total**: le nombre total d'années pendant lesquelles un député a siégé à l'assemblée législative
+  - exit_year - year + 1 
+  
+- **sessions_total**: le nombre total de sessions durant le mandat du député
+  - years_total*2
+  
+- **start_year**: c'est l'année où ils ont commencé leur carrière, marquant le début de leur mandat.
+  - permet de calculer des années complètes de service sans dupliquer les données
+  
+- **age_start**: l'âge auquel le député a commencé sa carrière
+  - calculé comme ( start_year - year_of_birth).
+  
+## 
+
+![](fig/gen.jpeg)
+
+## Nettoyage des données
+
+- 1253 observations et 14 variables
+
+- Manque d'Année de Naissance: 
+  - 62 députés (1990-2018) sans année de naissance, empêchant l'analyse de cohorte et le calcul de l'âge de début de mandat.
+- Années de Sortie Manquantes: 
+  - 505 députés (1990-2018) sans année de sortie, supposés en fonction jusqu'à 2024.
+- Incohérences de Données: 
+  - 11 observations avec des dates de naissance incompatibles avec les années de mandat
+
+## Résultats
+
+![fig.1](fig/graph_1.png)
+
+## 
+
+![fig.2](fig/graph_2.png)
+
+## 
+
+![fig.3](fig/graph_3.png)
+
+
+## 
+
+![fig.3_2](fig/graph_3_2.png)
+
+## 
+
+![fig.4](fig/graph_4.png)
+
+
+
+## Conclusion
+
+- Assemblée dominée par la génération silencieuse, les baby-boomers, et la Génération X.
+- Milléniaux: Moins d'années de service en moyenne, reflétant une sous-représentation potentielle.
+- Effet de l'âge moyen des députés pourrait expliquer la participation limitée des Milléniaux; 
+- Ils débutent plus tôt mais rattrapent lentement leur influence.
+- Importance de la Jeunesse: Essentielle dans l'ère du changement technologique et du développement de l'IA; 
+  - apportent des perspectives uniques sur la technologie.
+- Stratégies d'Inclusion: Proposition de quotas pour les jeunes politiciens pour assurer la représentation des Milléniaux et de la Génération Z.
+
+
+## Limites : 
+
+- difficulté à calculer le nombre total d'années de service en raison d'une organisation incohérente des données
+- exemple : Bob Chiarelli, Mike Davison
+
+::: columns
+::: column
+![](limits/year and year_exit .png)
+:::
+
+::: column
+![](limits/year and exit_year_2.png)
+:::
+:::
+
+## 
+
+![](limits/year_of_birth year exit_year.png)
+
+##  {background-image="fig/Boomers_satire.png"}
+
+

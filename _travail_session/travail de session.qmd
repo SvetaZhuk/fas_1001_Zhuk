@@ -1,16 +1,691 @@
 ---
 title: "travail de session"
 author: Svetlana Zhuk
+date: 2024 - 04 - 09
 format: pdf
 editor: visual
 ---
 
-# Introduction 
+# Introduction
+
+En 2015, Justin Trudeau, l'actuel Premier ministre du Parti libéral, a promis de réparer "le système électoral défaillant du pays" en passant du scrutin majoritaire à un tour à une représentation plus proportionnelle afin que les votes soient reflétés plus fidèlement à la Chambre des communes (Carmichael 2017).
+
+François Legault, l'actuel Premier ministre du Québec issu de la CAQ, a fait une promesse similaire : lors de l'élection de 2018, M. Legault a promis de réformer le système électoral en passant du scrutin majoritaire à un tour à un système électoral mixte de la représentation proportionnelle (Sidhartha 2022).
+
+En théorie, un mode de scrutin proportionnel permettrait une meilleure représentation et une plus grande visibilité des petits partis concurrents, comme ceux composés de politiciens de la génération Millennials et de la génération Z, qui se concentrent souvent sur des questions essentielles pour ces générations. Cependant, tant au niveau fédéral que provincial au Québec, ces promesses ne sont toujours pas tenues. Les raisons pour lesquelles ces promesses n'ont pas été tenues sont au mieux ondulantes, comme "le statu quo servirait mieux les Québécois" (dans le cas de Legault) et le fait de souligner que le scrutin proportionnel permettrait à des "voix marginales" d'entrer au Parlement (Rands 2017). Si les Millennials et la Génération Z n'ont pas leur parti politique, peut-être que d'autres partis peuvent aborder les questions concernant ces générations ? 
 
 ## Problématique de recherche
 
-## Données et méthodes 
+Abacus Data montre qu'il existe un conflit générationnel concernant les problèmes les plus importants auxquels le Canada est confronté. Pour 57 % des baby-boomers et 42 % des membres de la génération X, les soins de santé sont un enjeu majeur. En revanche, la génération Z se préoccupe davantage de l'accessibilité du logement, 54 % des membres de la génération Z et 51 % des milléniaux considérant qu'il s'agit d'une préoccupation essentielle. En outre, il existe un clivage permanent sur des questions telles que le changement climatique et l'environnement (Kishchuk 2023).
+
+Une analyse révèle que les gouvernements canadiens dépensent entre 33 321 et 40 152 dollars par personne âgée de 65 ans et plus, entre 13 635 et 14 800 dollars par personne âgée de 45 à 64 ans, et entre 10 406 et 11 614 dollars par personne âgée de moins de 45 ans (Kershaw et Anderson 2016).
+
+L'analyse suggère que les dépenses préférentielles en faveur des personnes âgées peuvent s'expliquer de deux points de vue : les préférences d'un électorat vieillissant et l'influence de l'âge des législateurs sur leurs décisions politiques.
+
+Valée-Dubois (2023) montre comment l'âge peut façonner les attitudes à l'égard des dépenses publiques. En moyenne, les personnes âgées soutiennent moins les dépenses de l'État en matière d'éducation et d'environnement, alors qu'elles sont nettement plus favorables aux dépenses en matière de transport (p. 469). En outre, la recherche révèle que les adultes dans la quarantaine sont plus favorables aux investissements publics dans les services aux personnes âgées que les autres groupes d'âge ([Vallée-Dubois 2023](https://www.cambridge.org/core/journals/journal-of-public-policy/article/government-spending-preferences-over-the-life-cycle/2A3D6A785878A1AC04742F13F8A897F7)). 
+
+Cependant, une étude de McClean (2019), axée sur le Japon, a révélé que l'âge des hommes politiques influence également de manière significative l'élaboration des politiques publiques. Les jeunes maires ont tendance à donner la priorité à différentes politiques de protection sociale par rapport à leurs homologues plus âgés, notamment en augmentant les dépenses liées à la protection de l'enfance par rapport à celles liées à la protection des personnes âgées. Le biais lié à l'âge au sein des institutions politiques peut donc avoir de profondes implications pour la représentation politique et la formulation des politiques publiques ([McClean 2019](https://cpb-us-e1.wpmucdn.com/sites.dartmouth.edu/dist/d/274/files/2019/09/McClean-2019.pdf)).
+
+Alors, qui s’occupera des questions importantes pour les Millennials et la génération Z, si les assemblées législatives sont majoritairement composées d’autres générations ? Munger, dans son livre "Generation Gap", montre que le Congrès des États-Unis est principalement composé de la génération des baby-boomers, qui détient le pouvoir politique Les institutions politiques et le système de vote uninominal à un tour sont probablement un obstacle pour un nouveau parti représentant les jeunes générations (Munger 2022). De la même manière que McClean (2009), Munger prévient que les partis, composés principalement de personnes âgées, sont plus susceptibles de répondre aux besoins de leurs électeurs plus âgés (Munger 2022, 47).
+
+Compte tenu du grand nombre de recherches sur la corrélation entre le vieillissement de l'électorat et son influence sur les politiques publiques, notre étude vise à effectuer une analyse descriptive de la composition générationnelle des assemblées législatives provinciales, en mettant l'accent sur le Québec et l'Ontario, les deux plus grandes provinces du Canada. Nous analyserons la période de service dans la législature de 1961 à 2018. L'année de départ est importante car elle marque le moment où les premiers baby-boomers sont devenus éligibles à la participation politique à l'âge de 18 ans. Cette approche nous permettra de retracer le début de leur carrière politique et de déterminer la durée de leur mandat au Parlement.
+
+La question de recherche est la suivante :
+
+**Quelle est la composition générationnelle des Assemblées législatives de l'Ontario et du Québec, entre 1961 et 2021 ?**
+
+Dans cette étude, nous prévoyons d'examiner les conclusions de McClean et Munger dans le contexte de la composition des assemblées législatives du Québec et de l'Ontario. Nous cherchons à comprendre si la prédominance des générations plus âgées au sein de l'assemblée législative limite la participation des milléniaux, entraînant une représentation insuffisante et un possible mépris pour les politiques qui répondent aux besoins des milléniaux et de la génération Z.
+
+
+## Données et méthodes
+
+Notre étude sera basée sur une analyse quantitative des ensembles de données présentés, en se concentrant sur les statistiques descriptives. Cela nous permettra de généraliser et de décrire la composition des cohortes générationnelles des institutions politiques au niveaux provincial. Nous utiliserons la visualisation pour comparer les données entre les cohortes générationnelles et rendre les résultats accessibles.
+
+Pour répondre à notre question de recherche sur la composition générationnelle des assemblées nationales du Québec et de l'Ontario, nous utiliserons l'ensemble de données 'Provincial Parliamentary Biographies' de Rivard et al, 2024.
+
+Cet ensemble de données d'observation fournit des informations électorales sur les législateurs de quatre provinces canadiennes depuis la création de leurs assemblées coloniales au XVIIIe siècle, soit plus de 7 000 législateurs de l'Ontario, du Québec, du Nouveau-Brunswick et de la Nouvelle-Écosse. Puisque cet ensemble de données couvre une période du XVIIIe siècle jusqu'au XXIe siècle, il convient à notre analyse qui se concentre sur la période de 1961 à 2018, car il contient les informations qui nous intéressent.
+
+Nous nous concentrerons sur le Québec et l'Ontario, les deux plus grandes provinces du Canada. Les variables dont nous aurons besoin sont 'year_of_birth' pour analyser la cohorte générationnelle, 'year' pour connaître l'année d'élection du législateur et ainsi déterminer son âge au début de sa carrière politique, et 'exit_year' pour déterminer combien de temps le député est resté à l'Assemblée nationale.
+
+L'ensemble de données que nous avons enregistré dans notre code sous le nom de "provinces" contient 17 038 observations et 48 variables. Après avoir nettoyé les données et créé les nouvelles variables, nous avons utilisé deux ensembles de données : 
+
+- 'provinces_clean_unique_1961' : 1,253 observations and 13 variables
+- 'legislative_age' (based on 'provinces_clean_unique_1961') : 1253 observations and 14 variables
+
+Dans les données "provinces_clean_unique", en plus des variables initiales que nous avons utilisées, telles que *'first_last'* pour les noms des députés, *'province'* pour les comparaisons entre provinces, *'year_of_birth'*, *'year'* marquant le début de la carrière politique, et *exit_year* représentant la fin de la carrière politique, nous avons créé de nouvelles variables
+
+- **gen_cohort**:Nous classons les députés en fonction de leur *année de naissance* dans des cohortes générationnelles. Pour la définition de ces cohortes, nous nous sommes appuyés sur les données suivantes   [the Strauss-Howe Generational Theory](https://www.cdamm.org/articles/strauss-howe), qui fournit un cadre pour la répartition des âges. Nous avons donc utilisé les catégories suivantes : Silent, Boomer, Génération X et Millennial.
+
+- **year_range**: Représente les cohortes générationnelles auxquelles appartiennent les députés.
+
+- **years_total**: Indique le nombre total d'années pendant lesquelles un député a siégé à l'assemblée législative, calculé comme suit : exit_year - year + 1. Cette formule inclut l'année de départ dans le décompte total.
+
+- **sessions_total**: Etant donné que chaque année comprend deux sessions, ce chiffre est calculé comme years_total*2, représentant le nombre total de sessions durant le mandat du député.
+
+- **start_year**: Il s'agit de l'année initiale de la carrière du député au sein de l'assemblée, ce qui permet de calculer des années complètes de service sans dupliquer les données. C'est l'année où ils ont commencé leur carrière, marquant le début de leur mandat.
+
+Dans l'ensemble de données 'legislative_age', nous avons ajouté la variable :
+
+- **age_start**: Cette variable est utilisée pour analyser l'âge auquel le député a commencé sa carrière, calculé comme ( start_year - year_of_birth).
+
+Cependant, au cours du processus de nettoyage des données, j'ai rencontré plusieurs problèmes liés à des incohérences dans l'ensemble de données initial. Ces problèmes expliquent le nombre réduit d'observations et ont influencé les résultats.
+
+1. 62 députés, dont les années de début de mandat s'échelonnent de 1990 à 2018, n'ont pas d'année de naissance enregistrée, ce qui m'empêche de déterminer leur cohorte générationnelle et de calculer l'âge auquel ils ont commencé leur mandat.
+
+2. Pour les députés exerçant plusieurs mandats, l'année de sortie enregistrée ne signifie pas la fin de leur mandat en cours, mais plutôt la conclusion de leur dernier mandat avant toute interruption. Cette nuance complique le calcul précis du nombre total d'années de service. Afin de simplifier les calculs pour les députés ayant plusieurs mandats, l'utilisation de l'année de sortie comme début du mandat suivant pourrait permettre d'éviter le surcomptage des années. Cependant, avec 17 000 observations, la vérification individuelle des dossiers de chaque adjoint représente un défi important. Par exemple, dans le cas de Bob Chiarelli, nous observons des périodes telles que 1987 - 1997, 1990 - 1997, et 1995 - 1997 pour l'année et l'année de sortie, ce qui indique un chevauchement des mandats. Inversement, pour Mike Davison (1975 - 1981, 1981 - 1985) et Evelyn Gigantes (1975 - 1981, 1981 - 1987), l'année de sortie coïncide avec le début du mandat suivant. Ces incohérences posent des problèmes pour déterminer le nombre total d'années passées à l'assemblée législative.
+
+![year and exit_year](~/Dropbox/fas_1001_Zhuk/_travail_session/limits/year and year_exit .png)
+
+![year and exit_year_2](~/Dropbox/fas_1001_Zhuk/_travail_session/limits/year and exit_year_2.png)
+
+3. J'ai 505 députés dont le mandat a commencé entre 1990 et 2018 et qui n'ont pas d'année de sortie enregistrée. Je suppose que cela signifie qu'ils siègent toujours à l'assemblée législative. Dans ces cas, lorsque 'exit_year' est NA, je l'ai défini comme s'étendant jusqu'à 2024.
+
+4. J'ai 11 observations où l'année_de_naissance n'est pas correctement alignée avec l'année et l'année_de_sortie, et ces observations doivent être éliminées. Prenons l'exemple de Duncan McFarland, dont l'année_de_naissance est 1973, ce qui placerait ce député dans la cohorte de la génération X. Cependant, il est indiqué que le mandat s'est déroulé de 1848 à 1851. Cependant, il est indiqué que le mandat s'est déroulé de 1848 à 1851.
+
+![year and exit_year_3](~/Dropbox/fas_1001_Zhuk/_travail_session/limits/year_of_birth year exit_year.png)
+
 
 ## Résultats
 
-# Conclusion
+![fig.1](~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_1.png)
+
+La figure 1 s'inspire de la figure figurant dans le livre de Munger (2022) sur les études américaines. Elle montre que le temps passé à l'Assemblée législative n'est pas réparti uniformément entre les cohortes générationnelles. La ligne pointillée représente une moyenne naïve (une estimation non ajustée à la population) du nombre de mandats que chaque cohorte effectuerait si les mandats étaient répartis de façon égale entre les cohortes. Cependant, nous observons que la majorité des années passées à l'Assemblée est concentrée sur les députés nés entre 1930 et 1960. Cette période englobe les dernières années de la génération silencieuse et couvre la génération des baby-boomers (1943-1960). Les députés nés entre 1930 et 1960 ont les barres les plus élevées, ce qui indique qu'un grand nombre de sessions législatives ont été effectuées par des personnes de ces années de naissance.
+
+
+Munger qualifie donc ce phénomène de "boomer ballast" et prévient qu'il restera actif jusqu'en 2030 environ. Cela suggère qu'il continuera à influencer les générations suivantes, qui n'ont pas pu entrer dans la vie politique en raison de la domination des baby-boomers à l'Assemblée législative. Le graphique indique que cela pourrait être le cas pour les corps législatifs du Québec et de l'Ontario. 
+
+![fig.2](~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_2.png)
+Nous avons décidé d'examiner cette répartition à l'échelle du Québec et de l'Ontario. Nous constatons que la tendance à la domination des membres nés entre 1940 et 1960 reste présente dans les deux provinces. Il y a un pic notable au Québec pour les députés nés en 1940, alors qu'en Ontario, il correspond à 1938, 1944 et 1951. On note également la présence active de députés nés en 1970 à l'Assemblée législative du Québec. Ainsi, la tendance de lestage des boomers peut encore persister dans les deux assemblées législatives, offrant moins d'opportunités de participation aux jeunes générations.
+
+![fig.3](~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3.png)
+
+En outre, nous examinons l'âge auquel les députés ont commencé leur mandat à l'Assemblée législative, en nous concentrant sur les générations suivantes : Génération silencieuse, Génération du baby-boom, Génération X et Génération du millénaire. Le graphique indique que l'âge médian pour les générations du baby-boom et du silence est d'environ 45 ans, bien que la distribution des âges soit plus large chez les baby-boomers. Daryl Kramp et Roland Richer ont commencé leur carrière à l'âge de 71 ans. Pour la génération X, l'âge médian est plus bas, à 41 ans. L'âge le plus jeune de début de mandat est observé chez les Millennials, avec une médiane de 30 ans. Malgré le fait que les Millennials n'en sont qu'à leurs débuts en politique, nous émettons l'hypothèse qu'un début de carrière politique plus précoce, comparé aux générations du Silent et du Baby Boom, leur permettra de rester plus longtemps au sein de l'assemblée législative. Toutefois, le boulet des baby-boomers constituera un obstacle, rendant difficile la formation d'un contrepoids significatif à la domination de la génération du baby-boom.
+
+![fig.3_2](~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3_2.png)
+Cependant, lorsque nous analysons les années d'entrée à l'Assemblée législative pour l'Ontario et le Québec, nous pouvons observer certaines différences : L'âge médian des baby-boomers de l'Ontario est de 43 ans, alors que celui des baby-boomers du Québec est de 47 ans. Pour la génération silencieuse, l'âge médian est de 42 ans. Nous notons que l'âge médian d'entrée en Ontario est de 31 ans, ce qui inclut le cas d'une personne commençant à 18 ans - Sam Oosterhoff, né en 1997, en est un exemple. Pour les Millennials au Québec, l'âge médian d'entrée est de 27 ans. Pour la génération silencieuse, les âges médians sont presque les mêmes dans les deux provinces, soit 40 et 41 ans. Étant donné que les milléniaux commencent leur carrière politique plus tôt que leurs collègues de la génération des baby-boomers, ils pourraient avoir la possibilité de mener des carrières politiques plus longues à l'avenir.
+
+![fig.4](~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_4.png)
+Le dernier graphique présente le nombre total d'années de service à l'Assemblée législative par cohorte générationnelle. Il illustre non seulement la durée typique de service pour chaque génération (indiquée par la largeur des violons), mais aussi la diversité au sein de chaque cohorte. Ainsi, nous observons que la cohorte des baby-boomers présente la plus longue variation, avec plus de 40 ans, et que la génération silencieuse affiche plus de 35 ans. Les milléniaux ont la durée de mandat la plus courte, car ils constituent la génération la plus jeune, ce qui explique pourquoi ce groupe passe généralement environ 8 ans à l'Assemblée législative. Il est à noter que la médiane des années de mandat des baby-boomers et des milléniaux, par exemple, est assez similaire et n'est peut-être plus élevée pour les baby-boomers qu'en raison de la présence de quelques députés ayant un mandat plus long que les milléniaux n'ont pas encore.
+
+
+# Conclusion : 
+
+Conformément à notre question de recherche, nous avons étudié la composition générationnelle de l'Assemblée législative au Québec et en Ontario. L'ensemble des données indique que, pour l'essentiel, l'Assemblée législative est composée de la génération silencieuse, des baby-boomers et de la génération X. Les milléniaux ont siégé moins d'années au total et en moyenne, ce qui pourrait expliquer l'apparente négligence de leurs questions. Toutefois, notre analyse (figure 4) suggère également que cet effet pourrait simplement être dû au fait que les Millennials sont encore trop jeunes pour atteindre l'âge moyen typique des députés. Ils commencent déjà, en moyenne, plus tôt que les générations précédentes, et ont donc peut-être simplement besoin de temps pour rattraper leur influence sur la prise de décision. Mais le danger du boulet des baby-boomers persiste. Il est important de prêter attention à la représentation des jeunes générations à l'Assemblée législative, en particulier maintenant que nous vivons dans une ère de changements techniques et de développement rapide de l'IA. L'Assemblée législative sera chargée d'élaborer des politiques juridiques pour régir l'intelligence artificielle. C'est pourquoi nous avons besoin de la participation de la jeune génération à l'Assemblée. Les milléniaux et la génération Z, qui sont plus avancés sur le plan technique et utilisent la technologie dans la vie de tous les jours, peuvent apporter une contribution précieuse.
+
+Pour améliorer la représentation des jeunes générations au sein de l'assemblée législative, nous pouvons envisager de mettre en place des quotas spéciaux pour les jeunes politiciens afin de représenter les Millennials et la Génération Z. En outre, des recherches supplémentaires sont nécessaires. Par exemple, il est crucial d'examiner la combinaison des générations par année parlementaire et la corrélation entre les votes en faveur des politiques publiques qui intéressent les générations plus âgées et plus jeunes.
+
+
+## Annexe
+
+```{r, echo=TRUE, results='hide'}
+library(tidyverse)
+library(lubridate)
+library(rvest)
+
+```
+
+```{r, echo=TRUE, results='hide'}
+#importation de données
+
+provinces <- read.csv("~/Dropbox/fas_1001_Zhuk/_travail_session/Data/Provincial Parliamentary Biographies/PPB.csv")
+
+dim(provinces)
+```
+
+
+```{r, echo=TRUE, results='hide'}
+#étudier les données : provinces
+
+glimpse(provinces)
+dim(provinces)
+colnames(provinces)
+table(provinces$year)
+```
+
+### Annexe : variable gen_cohort, year_range
+
+```{r}
+#nettoyage des données: provinces
+
+table(provinces$province)
+table(provinces$year_of_birth)
+
+provinces_clean <- provinces |> select(first_last,
+                                       province,
+                                       gender,
+                                       year_of_birth,
+                                       year_of_death,
+                                       year,
+                                       exit_year, 
+                                       party) |>
+  filter(str_detect(province, "Quebec|Ontario"))
+
+
+#vérification
+provinces_clean |> select(province) |> table()
+
+#ajout d'une nouvelle variable de cohorte générationnelle (gen_cohort) et (year_range) 
+#The Strauss-Howe Generational Theory
+
+provinces_clean <- provinces_clean |> mutate(gen_cohort = case_when(
+  year_of_birth >= 1701 & year_of_birth <= 1723 ~ "Awakening", 
+  year_of_birth >= 1724 & year_of_birth <= 1741 ~ "Liberty",
+  year_of_birth >= 1742 & year_of_birth <= 1766 ~ "Republican",
+  year_of_birth >= 1767 & year_of_birth <= 1791 ~ "Compromise",
+  year_of_birth >= 1792 & year_of_birth <= 1821 ~ "Transcendental",
+  year_of_birth >= 1822 & year_of_birth <= 1842 ~ "Gilded", 
+  year_of_birth >= 1843 & year_of_birth <= 1859 ~ "Progressive", 
+  year_of_birth >= 1860 & year_of_birth <= 1882 ~ "Missionary",
+  year_of_birth >= 1883 & year_of_birth <= 1900 ~ "Lost", 
+  year_of_birth >= 1901 & year_of_birth <= 1924 ~ "G.I", 
+  year_of_birth >= 1925 & year_of_birth <= 1942 ~ "Silent", 
+  year_of_birth >= 1943 & year_of_birth <= 1960 ~ "Babyboom", 
+  year_of_birth >= 1961 & year_of_birth <= 1981 ~ "GenerationX",
+  year_of_birth >= 1982 & year_of_birth <= 2004 ~ "Millenial",
+  year_of_birth >= 2005 & year_of_birth <= 2025 ~ "Homeland",
+  TRUE ~ NA_character_)) |> 
+  mutate(year_range = case_when(
+    year_of_birth >= 1701 & year_of_birth <= 1723 ~ "1701-1723",
+    year_of_birth >= 1724 & year_of_birth <= 1741 ~ "1724-1741",
+    year_of_birth >= 1742 & year_of_birth <= 1766 ~ "1742-1766",
+    year_of_birth >= 1767 & year_of_birth <= 1791 ~ "1767-1791",
+    year_of_birth >= 1792 & year_of_birth <= 1821 ~ "1792-1821",
+    year_of_birth >= 1822 & year_of_birth <= 1842 ~ "1822-1842",
+    year_of_birth >= 1843 & year_of_birth <= 1859 ~ "1843-1859",
+    year_of_birth >= 1860 & year_of_birth <= 1882 ~ "1860-1882",
+    year_of_birth >= 1883 & year_of_birth <= 1900 ~ "1883-1900",
+    year_of_birth >= 1901 & year_of_birth <= 1924 ~ "1901-1924",
+    year_of_birth >= 1925 & year_of_birth <= 1942 ~ "1925-1942",
+    year_of_birth >= 1943 & year_of_birth <= 1960 ~ "1943-1960",
+    year_of_birth >= 1961 & year_of_birth <= 1981 ~ "1961-1981",
+    year_of_birth >= 1982 & year_of_birth <= 2004 ~ "1982-2004",
+    year_of_birth >= 2005 & year_of_birth <= 2025 ~ "2005-2025",
+    TRUE ~ NA_character_
+  ))
+    
+provinces_clean |> select(gen_cohort, year_range)|> table() 
+
+```
+
+### Tinytable: generations
+
+
+
+### NA year_of_birth
+
+```{r}
+# données : provinces_clean NA
+
+provinces_clean_na <- provinces_clean |> 
+  select(first_last, year_of_birth, gen_cohort, year) |> 
+  filter(is.na(year_of_birth)) |> 
+  filter(year >= 1987) |> 
+  distinct(first_last, .keep_all = TRUE)
+
+summary(provinces_clean_na$year)
+
+dim(provinces_clean_na)
+
+# limits : J'ai 62 députés dont je ne connais pas l'année de naissance et je ne peux pas voir leur génération
+#png : NA_year_of_birth
+
+```
+
+### Variable : years_total, sessions_total
+
+```{r}
+#créer une nouvelle colonne combien d'années de service et de sessions
+
+provinces_clean <- provinces_clean |> 
+  mutate(years_total = exit_year - year + 1, 
+         sessions_total = years_total * 2)
+
+provinces_clean |> 
+  filter(str_detect(first_last, "jacques_parizeau|chiarelli_bob|denis_lazure"))
+
+```
+
+```{r}
+
+# Check how many NA in exit_year 
+
+serving_1 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year <= 1980)
+
+# J'ai 11 députés qui n'ont pas d'année de fin (1871-1921), I should eliminate them 
+
+provinces_clean <- provinces_clean |> 
+  filter(!(is.na(exit_year) & year < 1980))
+
+# verification
+
+serving_1 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year <= 1980)
+
+
+```
+
+### NA exit_year - 2024
+
+```{r}
+
+#NA dans exit_year correspond à ceux qui sont toujours à la Chambre des communes, je prends le exit_year, change NA en année en cours, puis filtre par la première année de travail 
+
+
+# NA qui reste dans "exit_year"
+
+
+serving_2 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year >= 1961)
+
+dim(serving_2)
+
+summary(serving_2$year)
+
+```
+
+```{r}
+#NA dans exit_year correspond à ceux qui sont toujours à la Chambre des communes, je prends le exit_year, change NA en année en cours, puis filtre par la première année de travail 
+#test_Chat_GPT
+
+current_year <- as.numeric(format(Sys.Date(), "%Y"))
+
+provinces_clean <- provinces_clean |> 
+  group_by(first_last) |> 
+  mutate(start_year = min(year[!is.na(year)])) |> 
+  ungroup() |> 
+  mutate(exit_year = if_else(year == start_year & is.na(exit_year) & gen_cohort != "Silent", current_year, exit_year)) |> 
+  group_by(first_last) |> 
+  mutate(years_total = exit_year - start_year,
+         sessions_total = years_total * 2) |> 
+  ungroup()
+
+#verification
+
+provinces_clean |> select(years_total) |> summary()
+
+provinces_clean |> select(first_last, year, exit_year, years_total) |> 
+  filter(years_total == "-1" | years_total == "75")
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+```
+
+```{r}
+#Turns out I have two John Whites, I need to rename one
+
+provinces_clean <- provinces_clean |> 
+  mutate(first_last = if_else(first_last == "John White" & 
+                              year_of_birth == 1761 & 
+                              year_of_death == 1800, "John_White", first_last))
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+# copy the code after renaming John White to John_White
+
+provinces_clean <- provinces_clean |> 
+  group_by(first_last) |> 
+  mutate(start_year = min(year[!is.na(year)])) |> 
+  ungroup() |> 
+  mutate(exit_year = if_else(year == start_year & is.na(exit_year) & gen_cohort != "Silent", current_year, exit_year)) |> 
+  group_by(first_last) |> 
+  mutate(years_total = exit_year - start_year,
+         sessions_total = years_total * 2) |> 
+  ungroup()
+
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+```
+
+```{r}
+
+#nettoyage d'observations -1 en "years_total" et <100 "years_total"
+#andre_peltier something weird is happening with that observation. I don't know, how to solve it: the "start year" turns to 1944, instead of 1994. But when I isolate, it works fine. there is no other andré pelletier in the data, and the year_of_birth is 1941, so I have no idea where the year 1944 comes from. I decided to eliminate this observation.
+
+provinces_clean <- provinces_clean |> 
+  filter(!str_detect(years_total, "-1")) |> 
+  filter(str_detect(gen_cohort, "Silent|Babyboom|GenerationX|Millenial")) |> 
+  filter(!str_detect(first_last, "andre_pelletier"))
+  
+
+provinces_clean |> select(gen_cohort) |> table()
+
+provinces_clean |> select(years_total) |> summary()
+
+provinces_clean |> filter(years_total == "42")
+
+```
+
+```{r, echo=TRUE, results='hide'}
+# I will try to choose the unique values of "years_total" for each deputy with the start year and the number of total_years, because some deputies have served several times, and therefore the numbers in total_years have doubled as for "françois_gendron" for example
+
+provinces_clean_unique <- provinces_clean |> 
+  distinct(first_last, start_year, years_total, sessions_total, .keep_all = TRUE)
+
+# verification
+
+provinces_clean_unique |> select(first_last) |> table()
+
+# I still have someone who is mentioned several times
+
+provinces_clean_unique |> 
+  filter(str_detect(first_last, "jacques_parizeau|chiarelli_bob|denis_lazure"))
+
+```
+
+
+```{r}
+# verification 
+# It turns out that I have 68 deputies for whom the year of release is written differently, not the last year of the entire service, but the last year of the parliamentary session.
+# year and exit_year 2.png
+
+name_counts <- provinces_clean_unique |> 
+  group_by(first_last) |> 
+  summarise(count = n(), .groups = 'drop') |> 
+  filter(count > 1) |> distinct()
+
+repeated_names <- provinces_clean_unique |> 
+  filter(first_last %in% name_counts$first_last)
+
+# so, I'll eliminate these observations 
+
+provinces_clean_unique <- provinces_clean_unique |> 
+  anti_join(repeated_names, by = "first_last")
+
+# verification 
+
+provinces_clean_unique |> select(years_total) |> summary()
+
+repeated_names <- provinces_clean_unique |> 
+  filter(first_last %in% name_counts$first_last)
+
+provinces_clean_unique |> select(gen_cohort) |> table()
+
+# filter by "year" from 1961 when first boomers were 18
+
+provinces_clean_unique <- provinces_clean_unique |> filter(year >= 1961)
+
+```
+
+
+```{r}
+#test verification 
+
+summary(provinces_clean_unique$year)
+```
+
+### Visualisation_1
+
+```{r, echo=TRUE, results='hide'}
+# visualisation_1
+# Le graphique montre que le temps passé à la Chambre législative n'est pas réparti également entre les cohortes générationnelles
+
+class(provinces_clean_unique$year_of_birth)
+
+dim(provinces_clean_unique)
+
+graph_1 <- ggplot(data = provinces_clean_unique, aes(x = year_of_birth)) +
+  geom_histogram(binwidth = 1,
+                 color = "black",
+                 fill = "orange",
+                 alpha = 0.5) + 
+    geom_hline(yintercept = mean(provinces_clean_unique$sessions_total, na.rm = TRUE), 
+             linetype = "dashed", color = "black") +
+  scale_x_continuous(limits = c(1920, 2000), 
+                     breaks = seq(1920, 2000, by = 10)) +
+    labs(title = "Représentation des générations de cohortes basée sur la date de naissance", 
+         subtitle = "de l'Ontario et du Québec", 
+         x = "Année de naissance", 
+         y = "Sessions servies") +
+  theme_minimal() + 
+  theme(panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .1), 
+        axis.text.x = element_text(angle = 45,
+                                   vjust = 0.5),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 10, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain")
+        )
+  
+
+graph_1
+
+```
+
+### Visualisation_2
+
+```{r, echo=TRUE, results='hide'}
+# Divisé entre le Québec et l'Ontario
+
+
+graph_2 <- ggplot(data = provinces_clean_unique, aes(x = year_of_birth)) +
+  geom_histogram(binwidth = 1,
+                 color = "black",
+                 fill = "orange",
+                 alpha = 0.5) + 
+    geom_hline(yintercept = mean(provinces_clean_unique$sessions_total, na.rm = TRUE), 
+             linetype = "dashed", color = "black") +
+  facet_wrap(~ province, ncol = 1) +
+  scale_x_continuous(limits = c(1920, 2000), 
+                     breaks = seq(1920, 2000, by = 10)) +
+    labs(title = "Représentation des générations de cohortes basée sur la date de naissance", 
+         subtitle = "", 
+         x = "Année de naissance", 
+         y = "Sessions servies") +
+  theme_minimal() + 
+  theme(panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .1), 
+        axis.text.x = element_text(angle = 45,
+                                   vjust = 0.5),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 10, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain")
+        )
+  
+graph_2
+
+```
+
+### Données : legislative_age, variable age_start
+
+```{r, echo=TRUE, results='hide'}
+#créer de nouvelles variables, pour comprendre à quel âge et dans quelle cohorte générationnelle les députés ont commencé à travailler
+
+legislative_age <- provinces_clean_unique |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth)
+  
+legislative_age |> glimpse()
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start == "-128")
+# error : Donald McDonald year_of_birth 1969, year 1841, exit_year 1844, I also have to eliminate this observation
+
+legislative_age <- provinces_clean_unique |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth) |> 
+  filter(first_last != "Donald McDonald")
+
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start >= -126 & age_start <= 0)
+
+#error :I have 11 observations where birth_year does not correctly match start_year and exit_year. I also need to eliminate these observations : year_of_birth year exit_year.png
+
+legislative_age <- provinces_clean_unique |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth) |> 
+  filter(!(age_start >= -128 & age_start <= 0)) |> 
+  mutate(gen_cohort = factor(gen_cohort, 
+                             levels = c("Silent", 
+                                        "Babyboom", 
+                                        "GenerationX", 
+                                        "Millenial")))
+
+
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start == "71")
+
+provinces |> filter(first_last == "kramp_daryl")
+# wow, Daryl Kramp was elected to the Ontario Legislative Assembly at the age of 71! never give up! Same as Roland Richer 
+
+dim(legislative_age)
+
+```
+
+### Visualisation_3
+
+```{r, echo=TRUE, results='hide'}
+# at what age deputies started to work, by generational cohort
+
+library(RColorBrewer)
+
+
+graph_3 <- ggplot(data = legislative_age, aes(x = gen_cohort,
+                                              y = age_start,
+                                              fill = gen_cohort)) +
+  geom_boxplot(alpha = .7) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Âge de début à l'Assemblée par génération",
+       subtitle = "de l'Ontario et du Québec",
+       x = "",
+       y = "Âge lors de l'entrée") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 15,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 15))
+        
+
+graph_3 
+
+
+```
+
+### Visualisation_3_2 : 
+
+```{r, echo=TRUE, results='hide'}
+#graph Ontario Quebec 
+
+graph_3_2 <- ggplot(data = legislative_age, aes(x = gen_cohort,
+                                              y = age_start,
+                                              fill = gen_cohort)) +
+  geom_boxplot(alpha = .8) +
+  facet_wrap(~ province) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Âge de début à l'Assemblée par génération",
+       subtitle = "",
+       x = "",
+       y = "Âge lors de l'entrée") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 15,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 13))
+        
+
+graph_3_2 
+
+```
+
+### Visualisation_4: 
+
+```{r, echo=TRUE, results='hide'}
+# graph_ total_years 
+
+graph_4 <-  ggplot(data = legislative_age, aes(x = gen_cohort, y = years_total, fill = gen_cohort)) +
+  geom_violin(trim=FALSE, alpha = .7, draw_quantiles = c(0.25, 0.5, 0.75)) +
+  #facet_wrap(~ province, ncol = 1) +
+  scale_fill_brewer(palette = "Dark2") + 
+  labs(title = "Longévité des cohortes générationnelles à l'Assemblée",
+       subtitle = "Quebec et Ontario",
+       x = "",
+       y = "Années de service total") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_line(colour = "grey70", size = .1), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 15))
+
+
+
+graph_4
+```
+
+
+
+
+
+## Bibliography notes : 
+
+The Strauss-Howe Generational Theory : for description of ages division 
+
+- Amanda van Eck Duymaer van Twist and Suzanne Newcombe. "Strauss-Howe Generational Theory." In James Crossley and Alastair Lockhart (eds.) Critical Dictionary of Apocalyptic and Millenarian Movements. 15 January 2021. Retrieved from www.cdamm.org/articles/strauss-howe. (First published 12 June 2017 censamm.org/resources/profiles/strauss-howe-generational-theory.)
+
+-   Banerjee, Sidhartha. 2022. «CAQ Leader Rejects Electoral Reform on Campaign Trail, Says He Will Work with Other Quebec Parties». CBC News. 27 septembre 2022. Consulté le 10 mars 2024. <https://www.cbc.ca/news/canada/montreal/legault-electoral-reform-1.6597622>.
+
+-   Carmichael, Kelly. 2017. «Broken Trust on Electoral Reform». Policy Options. Consulté le 10 mars 2024. <https://policyoptions.irpp.org/magazines/february-2017/broken-trust-on-electoral-reform/>.
+
+-   The Globe and Mail. 2023. «Globe Editorial: Budget 2023: The Growing Generation Gap between What Ottawa Spends on Older and Younger Canadians», 20 mars 2023. Consulté le 10 mars 2024. https://www.theglobeandmail.com/opinion/editorials/article-mind-the-growing-generation-gap/.
+
+-   Kershaw, Paul, et Lynell Anderson. 2016. «Measuring the age distribution in Canadian social spending». Canadian Public Administration 59 (4): 556‑79. <https://doi.org/10.1111/capa.12193>.
+
+-   Kishchuk, Oksana. 2023. «Gen Z - Top Issues Facing Canada». Abacus Data (blog). 31 août 2023. Consulté le 10 mars 2024. <https://abacusdata.ca/genz-top-issues-facing-canada/>.
+
+-   Munger, Kevin M. 2022. Generation Gap: Why the Baby Boomers Still Dominate American Politics and Culture. New York: Columbia University Press.
+
+-   Parliament of Canada. «Parlinfo». Consulté le 10 mars 2024. <https://lop.parl.ca/sites/ParlInfo/default/en_CA/People/parliamentarians>.
+
+-   Rands, Chris. 2017. «Do You Think Kellie Leitch Should Have Her Own Party?" Trudeau Asks Electoral Reform Advocate». CBC News. 10 février 2017. Consulté le 10 mars 2024. <https://www.cbc.ca/news/politics/electoral-reform-trudeau-leitch-1.3975354>.
+
+-   Rivard, Alexandre, Marc André Bodet, Jean-François Godbout, et Éric Montigny. 2024. «Provincial Parliamentary Biographies». Harvard Dataverse. <https://doi.org/10.7910/DVN/LZPEFQ>.
+
+- Vallée-Dubois, Florence. 2023. «Government Spending Preferences over the Life Cycle». Journal of Public Policy 43 (3): 468‑89. https://doi.org/10.1017/S0143814X23000065.
+
+- McClean, Charles T. 2019. "Does it matter that politicians are older than their constituents? Yes." Manuscript, UC San Diego, downloaded from https://www. charlesmcclean. com/research (Accessed 3 February 2021)
+
+

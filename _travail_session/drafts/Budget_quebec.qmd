@@ -1,0 +1,132 @@
+---
+title: "DF_quebec"
+format: html
+editor: visual
+---
+
+```{r}
+# the budgetary expenses Quebec 2023-2024
+
+secteurs <- c("Santé et Services sociaux", "Éducation", "Enseignement supérieur", 
+              "Transports et Mobilité durable", "Emploi et Solidarité sociale", 
+              "Affaires municipales et Habitation", "Conseil du trésor et Administration gouvernementale", 
+              "Culture et Communications", "Économie, Innovation et Énergie", "Famille")
+
+depenses <- c(52858.1, 18110.6, 9150.2, 2027.5, 4719.4, 3105.4, 10925.2, 1079.6, 1570.1, 3623.6)
+
+dep_quebec_2023_2024 <- data.frame(secteur = secteurs, depenses = depenses)
+
+```
+
+```{r}
+# graph
+
+graph_20 <- ggplot(data = dep_quebec_2023_2024, aes(x = reorder(secteur, depenses), 
+                                      y = depenses, 
+                                      fill = secteur)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_brewer(palette = "BrBG") +
+  scale_y_continuous(limits = c(0, 55000), 
+                     breaks = seq(0, 55000, by = 10000), 
+                     labels = scales:: dollar_format()) +
+  labs(title = "Dépenses Budgétaires: 2023 - 2024",
+       subtitle = "Québec",
+       x = "",
+       y = "en millions") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .1), 
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black", size = .2),
+        plot.title = element_text(size = 15, hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5), 
+        text = element_text(face = "plain", size = 12))
+
+graph_20
+
+  
+```
+
+```{r}
+# save graph : 
+
+save(graph_20, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_20.Rda")
+ggsave(graph_20, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_20.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+
+```{r}
+depenses_ontario_2023_2024 <- read_csv("~/Dropbox/fas_1001_Zhuk/_travail_session/Data/depenses_budgetaires_ontario_2023_2024.csv")
+
+```
+```{r}
+# nettoyage 
+
+colnames(depenses_ontario_2023_2024)
+
+dep_ontario_2023_2024 <- depenses_ontario_2023_2024 |> 
+  rename(depenses = `Dépenses (en milliards de dollars)`) |> 
+  filter(!str_detect(Secteur, "Total des charges 2023-2024|Autres programmes|Total dépenses Infrastructure")) |> 
+  filter(Secteur != "Autres secteurs (Infrastructure)")
+           
+           
+
+
+table(dep_ontario_2023_2024$Secteur)
+```
+
+
+
+```{r}
+#graph 
+
+library(RColorBrewer)
+
+graph_21 <- ggplot(data = dep_ontario_2023_2024, aes(x = reorder(Secteur, depenses), 
+                                      y = depenses, 
+                                      fill = Secteur)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_brewer(palette = "PiYG") +
+  scale_y_continuous(labels = scales:: dollar_format()) +
+  labs(title = "Dépenses Budgétaires: 2023 - 2024",
+       subtitle = "Ontario",
+       x = "",
+       y = "en milliards") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .1), 
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black", size = .2),
+        plot.title = element_text(size = 15, hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5), 
+        text = element_text(face = "plain", size = 12))
+
+graph_21
+
+```
+
+```{r}
+# save 
+
+save(graph_21, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_21.Rda")
+ggsave(graph_21, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_21.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+

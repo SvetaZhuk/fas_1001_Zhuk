@@ -1,0 +1,889 @@
+---
+title: "Données"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(rvest)
+library(readxl)
+library(readr)
+```
+
+```{r}
+#importation de données
+
+provinces <- read.csv("~/Dropbox/fas_1001_Zhuk/_travail_session/Data/Provincial Parliamentary Biographies/PPB.csv")
+
+dim(provinces)
+
+```
+
+```{r}
+# transformer le fichier .xlsx en csv
+
+federal <- read_excel("~/Dropbox/fas_1001_Zhuk/_travail_session/Data/Parliamentarians.xlsx", sheet = "Parliamentarians")
+
+# enregistrer au format csv
+write_csv(federal, "~/Dropbox/fas_1001_Zhuk/_travail_session/Data/federal.csv")
+
+```
+
+```{r}
+#étudier les données : provinces
+
+glimpse(provinces)
+dim(provinces)
+colnames(provinces)
+table(provinces$year)
+```
+
+```{r}
+#étudier les données : federal
+
+glimpse(federal)
+```
+
+```{r}
+#nettoyage des données: provinces
+
+table(provinces$province)
+table(provinces$year_of_birth)
+
+provinces_clean <- provinces |> select(first_last,
+                                       province,
+                                       gender,
+                                       year_of_birth,
+                                       year_of_death,
+                                       year,
+                                       exit_year, 
+                                       party) |>
+  filter(str_detect(province, "Quebec|Ontario"))
+
+
+#vérification
+provinces_clean |> select(province) |> table()
+
+#ajout d'une nouvelle variable de cohorte générationnelle (gen_cohort) et (year_range) 
+#The Strauss-Howe Generational Theory
+
+provinces_clean <- provinces_clean |> mutate(gen_cohort = case_when(
+  year_of_birth >= 1701 & year_of_birth <= 1723 ~ "Awakening", 
+  year_of_birth >= 1724 & year_of_birth <= 1741 ~ "Liberty",
+  year_of_birth >= 1742 & year_of_birth <= 1766 ~ "Republican",
+  year_of_birth >= 1767 & year_of_birth <= 1791 ~ "Compromise",
+  year_of_birth >= 1792 & year_of_birth <= 1821 ~ "Transcendental",
+  year_of_birth >= 1822 & year_of_birth <= 1842 ~ "Gilded", 
+  year_of_birth >= 1843 & year_of_birth <= 1859 ~ "Progressive", 
+  year_of_birth >= 1860 & year_of_birth <= 1882 ~ "Missionary",
+  year_of_birth >= 1883 & year_of_birth <= 1900 ~ "Lost", 
+  year_of_birth >= 1901 & year_of_birth <= 1924 ~ "G.I", 
+  year_of_birth >= 1925 & year_of_birth <= 1942 ~ "Silent", 
+  year_of_birth >= 1943 & year_of_birth <= 1960 ~ "Babyboom", 
+  year_of_birth >= 1961 & year_of_birth <= 1981 ~ "GenerationX",
+  year_of_birth >= 1982 & year_of_birth <= 2004 ~ "Millenial",
+  year_of_birth >= 2005 & year_of_birth <= 2025 ~ "Homeland",
+  TRUE ~ NA_character_)) |> 
+  mutate(year_range = case_when(
+    year_of_birth >= 1701 & year_of_birth <= 1723 ~ "1701-1723",
+    year_of_birth >= 1724 & year_of_birth <= 1741 ~ "1724-1741",
+    year_of_birth >= 1742 & year_of_birth <= 1766 ~ "1742-1766",
+    year_of_birth >= 1767 & year_of_birth <= 1791 ~ "1767-1791",
+    year_of_birth >= 1792 & year_of_birth <= 1821 ~ "1792-1821",
+    year_of_birth >= 1822 & year_of_birth <= 1842 ~ "1822-1842",
+    year_of_birth >= 1843 & year_of_birth <= 1859 ~ "1843-1859",
+    year_of_birth >= 1860 & year_of_birth <= 1882 ~ "1860-1882",
+    year_of_birth >= 1883 & year_of_birth <= 1900 ~ "1883-1900",
+    year_of_birth >= 1901 & year_of_birth <= 1924 ~ "1901-1924",
+    year_of_birth >= 1925 & year_of_birth <= 1942 ~ "1925-1942",
+    year_of_birth >= 1943 & year_of_birth <= 1960 ~ "1943-1960",
+    year_of_birth >= 1961 & year_of_birth <= 1981 ~ "1961-1981",
+    year_of_birth >= 1982 & year_of_birth <= 2004 ~ "1982-2004",
+    year_of_birth >= 2005 & year_of_birth <= 2025 ~ "2005-2025",
+    TRUE ~ NA_character_
+  ))
+    
+provinces_clean |> select(gen_cohort, year_range)|> table() 
+
+summary(provinces_clean$year)
+
+
+```
+
+```{r}
+#tinytable 
+
+library(tinytable)
+#variable year_range comme facteur à catégoriser du plus ancien au présent
+
+provinces_clean <- provinces_clean |> 
+  mutate(year_range = factor(year_range,
+                             levels = c("1701-1723",
+                                        "1724-1741",
+                                        "1742-1766",
+                                        "1767-1791",
+                                        "1792-1821",
+                                        "1822-1842",
+                                        "1843-1859",
+                                        "1860-1882",
+                                        "1883-1900",
+                                        "1901-1924",
+                                        "1925-1942",
+                                        "1943-1960",
+                                        "1961-1981",
+                                        "1982-2004",
+                                        "2005-2025")))
+
+#compter le n pour les générations et séparer par province
+
+table_1 <- provinces_clean |> 
+  select(gen_cohort, year_range, province) |> 
+  group_by(gen_cohort, year_range) |> 
+  count(province) |> 
+  arrange(year_range) |> 
+  ungroup()
+
+#pivot_wider pour la variable de province afin de créer un tableau
+
+table_1_df <- table_1 |> 
+  pivot_wider(names_from = province, 
+              values_from = n, 
+              values_fill = list(n = 0))
+
+table_1_df <- as.data.frame(table_1_df)
+
+tt(table_1_df) |> 
+  style_tt(i = c(11, 12, 13, 14),  color = "orange")
+
+
+```
+
+```{r}
+# données : provinces_clean NA
+
+provinces_clean_na <- provinces_clean |> 
+  select(first_last, year_of_birth, gen_cohort, year) |> 
+  filter(is.na(year_of_birth)) |> 
+  filter(year >= 1987) |> 
+  distinct(first_last, .keep_all = TRUE)
+
+summary(provinces_clean_na$year)
+
+dim(provinces_clean_na)
+
+# limits : J'ai 62 députés dont je ne connais pas l'année de naissance et je ne peux pas voir leur génération
+#png : NA_year_of_birth
+
+```
+
+```{r}
+#créer une nouvelle colonne combien d'années de service et de sessions
+
+provinces_clean <- provinces_clean |> 
+  mutate(years_total = exit_year - year + 1, 
+         sessions_total = years_total * 2)
+
+provinces_clean |> 
+  filter(str_detect(first_last, "jacques_parizeau|chiarelli_bob|denis_lazure"))
+
+summary(provinces_clean$year)
+
+```
+
+```{r}
+
+# Check how many NA in exit_year 
+
+serving_1 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year <= 1980)
+
+# J'ai 11 députés qui n'ont pas d'année de fin (1871-1921), I should eliminate them 
+
+provinces_clean <- provinces_clean |> 
+  filter(!(is.na(exit_year) & year < 1980))
+
+# verification
+
+serving_1 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year <= 1980)
+
+summary(provinces_clean$year)
+
+```
+
+```{r}
+
+#NA dans exit_year correspond à ceux qui sont toujours à la Chambre des communes, je prends le exit_year, change NA en année en cours, puis filtre par la première année de travail 
+
+
+# NA qui reste dans "exit_year"
+
+
+serving_2 <- provinces_clean |> 
+  select(first_last, year, exit_year) |> 
+  filter(is.na(exit_year)) |> 
+  filter(year >= 1961)
+
+dim(serving_2)
+
+summary(serving_2$year)
+
+```
+
+```{r}
+#NA dans exit_year correspond à ceux qui sont toujours à la Chambre des communes, je prends le exit_year, change NA en année en cours, puis filtre par la première année de travail 
+#test_Chat_GPT
+
+current_year <- as.numeric(format(Sys.Date(), "%Y"))
+
+provinces_clean <- provinces_clean |> 
+  group_by(first_last) |> 
+  mutate(start_year = min(year[!is.na(year)])) |> 
+  ungroup() |> 
+  mutate(exit_year = if_else(year == start_year & is.na(exit_year) & gen_cohort != "Silent", current_year, exit_year)) |> 
+  group_by(first_last) |> 
+  mutate(years_total = exit_year - start_year,
+         sessions_total = years_total * 2) |> 
+  ungroup()
+
+#verification
+
+provinces_clean |> select(years_total) |> summary()
+
+provinces_clean |> select(first_last, year, exit_year, years_total) |> 
+  filter(years_total == "-1" | years_total == "75")
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+summary(provinces_clean$year)
+
+```
+
+```{r}
+#Turns out I have two John Whites, I need to rename one
+
+provinces_clean <- provinces_clean |> 
+  mutate(first_last = if_else(first_last == "John White" & 
+                              year_of_birth == 1761 & 
+                              year_of_death == 1800, "John_White", first_last))
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+# copy the code after renaming John White to John_White
+
+provinces_clean <- provinces_clean |> 
+  group_by(first_last) |> 
+  mutate(start_year = min(year[!is.na(year)])) |> 
+  ungroup() |> 
+  mutate(exit_year = if_else(year == start_year & is.na(exit_year) & gen_cohort != "Silent", current_year, exit_year)) |> 
+  group_by(first_last) |> 
+  mutate(years_total = exit_year - start_year,
+         sessions_total = years_total * 2) |> 
+  ungroup()
+
+
+provinces_clean |> filter(first_last == "John White", .keep_all = TRUE)
+
+```
+
+```{r}
+
+#nettoyage d'observations -1 en "years_total" et <100 "years_total"
+#andre_peltier something weird is happening with that observation. I don't know, how to solve it: the "start year" turns to 1944, instead of 1994. But when I isolate, it works fine. there is no other andré pelletier in the data, and the year_of_birth is 1941, so I have no idea where the year 1944 comes from. I decided to eliminate this observation.
+
+provinces_clean <- provinces_clean |> 
+  filter(!str_detect(years_total, "-1")) |> 
+  #filter(str_detect(gen_cohort, "Silent|Babyboom|GenerationX|Millenial")) |> 
+  filter(!str_detect(first_last, "andre_pelletier"))
+  
+
+provinces_clean |> select(gen_cohort) |> table()
+
+provinces_clean |> select(years_total) |> summary()
+
+provinces_clean |> filter(years_total == "42")
+
+summary(provinces_clean$year)
+
+```
+
+```{r}
+# I will try to choose the unique values of "years_total" for each deputy with the start year and the number of total_years, because some deputies have served several times, and therefore the numbers in total_years have doubled as for "françois_gendron" for example
+
+provinces_clean_unique <- provinces_clean |> 
+  distinct(first_last, start_year, years_total, sessions_total, .keep_all = TRUE)
+
+# verification
+
+provinces_clean_unique |> select(first_last) |> table()
+
+# I still have someone who is mentioned several times
+
+provinces_clean_unique |> 
+  filter(str_detect(first_last, "jacques_parizeau|chiarelli_bob|denis_lazure"))
+
+```
+
+```{r}
+# verification 
+# It turns out that I have 68 deputies for whom the year of release is written differently, not the last year of the entire service, but the last year of the parliamentary session.
+# year and exit_year 2.png
+
+name_counts <- provinces_clean_unique |> 
+  group_by(first_last) |> 
+  summarise(count = n(), .groups = 'drop') |> 
+  filter(count > 1) |> distinct()
+
+repeated_names <- provinces_clean_unique |> 
+  filter(first_last %in% name_counts$first_last)
+
+# so, I'll eliminate these observations 
+
+provinces_clean_unique <- provinces_clean_unique |> 
+  anti_join(repeated_names, by = "first_last")
+
+# verification 
+
+provinces_clean_unique |> select(years_total) |> summary()
+
+repeated_names <- provinces_clean_unique |> 
+  filter(first_last %in% name_counts$first_last)
+
+provinces_clean_unique |> select(gen_cohort) |> table()
+
+# filter by "year" from 1961 when first boomers were 18
+
+provinces_clean_unique_1961 <- provinces_clean_unique |> 
+  filter(year >= 1961) |> 
+  filter(str_detect(gen_cohort, "Silent|Babyboom|GenerationX|Millenial"))
+
+
+
+
+
+```
+
+```{r}
+#test verification 
+
+summary(provinces_clean_unique$year)
+```
+
+```{r}
+# visualisation_1
+# Le graphique montre que le temps passé à la Chambre législative n'est pas réparti également entre les cohortes générationnelles
+
+class(provinces_clean_unique$year_of_birth)
+
+dim(provinces_clean_unique)
+
+graph_1 <- ggplot(data = provinces_clean_unique, aes(x = year_of_birth)) +
+  geom_histogram(binwidth = 1,
+                 color = "black",
+                 fill = "orange",
+                 alpha = 0.5) + 
+    geom_hline(yintercept = mean(provinces_clean_unique$sessions_total, na.rm = TRUE), 
+             linetype = "dashed", color = "black") +
+  scale_x_continuous(limits = c(1867, 2000), 
+                     breaks = c(1867, seq(1890, 2000, by = 10))) +
+    labs(title = "Représentation des générations de cohortes basée sur la date de naissance", 
+         subtitle = "de l'Ontario et du Québec", 
+         x = "Année de naissance", 
+         y = "Sessions servies") +
+  theme_minimal() + 
+  theme(panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .1), 
+        axis.text.x = element_text(angle = 45,
+                                   vjust = 0.5),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 10, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain")
+        )
+  
+
+graph_1
+
+```
+
+```{r}
+#save graph_1
+
+save(graph_1, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_1.Rda")
+ggsave(graph_1, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_1.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# Divisé entre le Québec et l'Ontario
+
+
+graph_2 <- ggplot(data = provinces_clean_unique, aes(x = year_of_birth)) +
+  geom_histogram(binwidth = 1,
+                 color = "black",
+                 fill = "orange",
+                 alpha = 0.5) + 
+    geom_hline(yintercept = mean(provinces_clean_unique$sessions_total, na.rm = TRUE), 
+             linetype = "dashed", color = "black") +
+  facet_wrap(~ province, ncol = 1) +
+  scale_x_continuous(limits = c(1867, 2000), 
+                     breaks = c(1867, seq(1890, 2000, by = 10))) +
+    labs(title = "Représentation des générations de cohortes basée sur la date de naissance", 
+         subtitle = "", 
+         x = "Année de naissance", 
+         y = "Sessions servies") +
+  theme_minimal() + 
+  theme(panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .1), 
+        axis.text.x = element_text(angle = 45,
+                                   vjust = 0.5),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 10, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain")
+        )
+  
+graph_2
+
+```
+
+```{r}
+#save graph_2
+
+save(graph_2, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_2.Rda")
+ggsave(graph_2, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_2.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+#créer de nouvelles variables, pour comprendre à quel âge et dans quelle cohorte générationnelle les députés ont commencé à travailler
+
+legislative_age <- provinces_clean_unique_1961 |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth)
+  
+legislative_age |> glimpse()
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start == "-128")
+# error : Donald McDonald year_of_birth 1969, year 1841, exit_year 1844, I also have to eliminate this observation
+
+legislative_age <- provinces_clean_unique_1961 |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth) |> 
+  filter(first_last != "Donald McDonald")
+
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start >= -126 & age_start <= 0)
+
+#error :I have 11 observations where birth_year does not correctly match start_year and exit_year. I also need to eliminate these observations : year_of_birth year exit_year.png
+
+legislative_age <- provinces_clean_unique_1961 |> 
+  mutate(age_start = start_year - year_of_birth) |> 
+  drop_na(age_start, year_of_birth) |> 
+  filter(!(age_start >= -128 & age_start <= 0)) |> 
+  mutate(gen_cohort = factor(gen_cohort, 
+                             levels = c("Silent", 
+                                        "Babyboom", 
+                                        "GenerationX", 
+                                        "Millenial")))
+
+
+legislative_age |> select(age_start) |> summary()
+
+legislative_age |> filter(age_start == "71")
+
+provinces |> filter(first_last == "kramp_daryl")
+# wow, Daryl Kramp was elected to the Ontario Legislative Assembly at the age of 71! never give up! Same as Roland Richer 
+
+dim(legislative_age)
+
+legislative_age |> filter(age_start < "20") |> filter(province == "Ontario")
+
+```
+
+```{r}
+# at what age deputies started to work, by generational cohort
+
+library(RColorBrewer)
+
+
+graph_3 <- ggplot(data = legislative_age, aes(x = gen_cohort,
+                                              y = age_start,
+                                              fill = gen_cohort)) +
+  geom_boxplot(alpha = .7) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Âge de début à l'Assemblée par génération",
+       subtitle = "de l'Ontario et du Québec",
+       x = "",
+       y = "Âge lors de l'entrée") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 15,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 15))
+        
+
+graph_3 
+
+
+```
+
+```{r}
+#save graph_3
+
+save(graph_3, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3.Rda")
+ggsave(graph_3, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+
+```
+
+```{r}
+#graph Ontario Quebec 
+
+graph_3_2 <- ggplot(data = legislative_age, aes(x = gen_cohort,
+                                              y = age_start,
+                                              fill = gen_cohort)) +
+  geom_boxplot(alpha = .8) +
+  facet_wrap(~ province) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Âge de début à l'Assemblée par génération",
+       subtitle = "",
+       x = "",
+       y = "Âge lors de l'entrée") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 15,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 13))
+        
+
+graph_3_2 
+
+```
+
+```{r}
+#save graph_3_2
+
+save(graph_3_2, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3_2.Rda")
+ggsave(graph_3_2, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_3_2.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# Âge d'entrée en fonctions à l'Assemblée législative par cohorte générationnelle : h & f
+
+graph_8 <- ggplot(data = legislative_age, aes(x = gen_cohort,
+                                              y = age_start,
+                                              fill = gender)) +
+  geom_boxplot(alpha = .8) +
+  facet_wrap(~ gender, 
+             labeller = as_labeller(c(f = "femme", m = "homme"))) +
+  scale_fill_brewer(palette = "Pastel1") +
+  labs(title = "Âge de début à l'Assemblée par génération",
+       subtitle = "de l'Ontario et du Québec",
+       x = "",
+       y = "Âge lors de l'entrée") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_line(colour = "grey70", size = .2), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_blank(), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 15,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 10))
+        
+
+graph_8 
+
+
+```
+
+```{r}
+# save graph_8 
+
+save(graph_8, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_8.Rda")
+ggsave(graph_8, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_8.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# graph_ total_years 
+
+graph_4 <-  ggplot(data = legislative_age, aes(x = gen_cohort, y = years_total, fill = gen_cohort)) +
+  geom_violin(trim=FALSE, alpha = .7, draw_quantiles = c(0.25, 0.5, 0.75)) +
+  #facet_wrap(~ province, ncol = 1) +
+  scale_fill_brewer(palette = "Dark2") + 
+  labs(title = "Longévité des cohortes générationnelles à l'Assemblée",
+       subtitle = "Quebec et Ontario",
+       x = "",
+       y = "Années de service total") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+        panel.grid.major.y = element_line(colour = "grey70", size = .2),
+        panel.grid.minor.y = element_line(colour = "grey70", size = .1), 
+        axis.line = element_line(colour = "black",
+                                 size = .2),
+        plot.title = element_text(size = 12,
+                                  hjust = 0.5),
+        plot.subtitle = element_text(size = 12, 
+                                  hjust = 0.5), 
+        text = element_text(face = "plain", size = 15))
+
+
+
+graph_4
+```
+
+```{r}
+#save graph 4
+
+save(graph_4, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_4.Rda")
+ggsave(graph_4, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_4.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# FAS1003 : creating the data visualisation for gender generational cohort 
+
+graph_5 <- ggplot(data = legislative_age, aes(x = gen_cohort, y = years_total, fill = gender)) +
+  geom_boxplot(position=position_dodge(0.8)) +
+  #geom_violin(trim=FALSE, alpha = .7, position=position_dodge(0.5), draw_quantiles = c(0.25, 0.5, 0.75)) +
+  scale_fill_manual(values = c("f" = "#FBB4AE", "m" = "#B3CDE3"),
+                    labels = c("f" = "femme", "m" = "homme")) +
+  labs(title = "Longévité des cohortes générationnelles à l'Assemblée Législative",
+       subtitle = "Analyse par genre au Québec et en Ontario",
+       x = "",
+       y = "Années de service total",
+       fill = NULL) +
+  theme_minimal() +
+  theme(
+    #legend.position = "bottom",  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+    panel.grid.major.y = element_line(colour = "grey70", size = .2),
+    panel.grid.minor.y = element_blank(), 
+    axis.line = element_line(colour = "black", size = .2),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5), 
+    text = element_text(face = "plain", size = 15)
+  )
+
+graph_5
+
+
+```
+
+```{r}
+save(graph_5, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_5.Rda")
+ggsave(graph_5, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_5.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+#test 
+
+graph_90 <- ggplot(data = legislative_age, aes(x = gen_cohort, y = years_total, color = gender)) +
+  geom_jitter(position=position_dodge(0.8)) +  
+ # geom_violin(trim=FALSE, alpha = .7, position=position_dodge(0.5), draw_quantiles = c(0.25, 0.5, 0.75)) +
+  scale_color_manual(values = c("f" = "#f77165", "m" = "#7ba8ce"),
+                    labels = c("f" = "Femme", "m" = "Homme")) +
+  labs(title = "Longévité des cohortes générationnelles à l'Assemblée Législative",
+       subtitle = "Analyse par genre au Québec et en Ontario",
+       x = "",
+       y = "Années de service total",
+       color = NULL) + 
+  theme_minimal() +
+  theme(
+    #legend.position = "bottom", 
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+    panel.grid.major.y = element_line(colour = "grey70", size = .1),
+    panel.grid.minor.y = element_blank(), 
+    axis.line = element_line(colour = "black", size = .2),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    text = element_text(face = "plain", size = 15)
+  )
+
+graph_90
+
+```
+
+```{r}
+#save 
+
+save(graph_90, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_90.Rda")
+ggsave(graph_90, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_90.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# how many women and men by generation 
+
+graph_6 <- ggplot(data = legislative_age, aes(x = gen_cohort, 
+                                              fill = gender)) +
+  geom_bar(position = "dodge", width = .9) +
+  facet_wrap(~ province) +
+  scale_fill_manual(values = c("f" = "#FBB4AE", "m" = "#B3CDE3"),
+                    labels = c("f" = "femme", "m" = "homme")) +
+  labs(title = "Répartition par genre au sein des cohortes générationnelles à l'Assemblée législative",
+       subtitle = "",
+       x = "",
+       y = "Nombre de députés", 
+       fill = NULL) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_line(colour = "grey70", size = .1),
+    panel.grid.major.y = element_line(colour = "grey70", size = .1),
+    panel.grid.minor.y = element_blank(), 
+    axis.line = element_line(colour = "black", size = .2),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5), 
+    text = element_text(face = "plain", size = 10)
+  ) 
+
+
+
+graph_6 
+
+```
+
+```{r}
+#save graph_6
+
+save(graph_6, file ="~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_6.Rda")
+ggsave(graph_6, 
+       filename = "~/Dropbox/fas_1001_Zhuk/_travail_session/fig/graph_6.png",
+       dpi = 320, 
+       bg = "white",
+       units = "cm",
+       height = 10, 
+       width = 20)
+```
+
+```{r}
+# graph density at start 
+
+graph_9 <- ggplot(legislative_age, aes(x = age_start, fill = gen_cohort)) +
+  geom_density(alpha = 0.6) +
+  labs(title = "Distribution of Deputies' Ages at Start by Generational Cohort",
+       x = "Age at Start",
+       y = "Density") +
+  scale_fill_brewer(palette = "Pastel2") +
+  theme_minimal()
+
+graph_9
+```
+
+```{r}
+# just trying 
+
+library(ggplot2)
+library(dplyr)
+
+
+
+# Count the number of members in each generational cohort and gender
+counts <- legislative_age %>%
+  group_by(gen_cohort, gender) %>%
+  summarise(count = n())
+
+# Calculate the proportions
+counts <- counts %>%
+  mutate(proportion = count / sum(count))
+
+# Plot the proportions for each generational cohort and gender
+graph_proportions <- ggplot(counts, aes(x = gen_cohort, y = proportion, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Proportion of Legislative Members by Generational Cohort and Gender",
+       x = "Generational Cohort",
+       y = "Proportion of Total Members") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Pastel1")
+
+graph_proportions
+
+```

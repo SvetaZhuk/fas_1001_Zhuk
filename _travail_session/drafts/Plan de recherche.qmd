@@ -35,7 +35,7 @@ Cette analyse descriptive vise à sensibiliser à la composition générationnel
 
 ## Les données
 
-Pour répondre à notre question de recherche, nous utiliserons deux ensembles de données : l'un pour la composition fédérale de la Chambre des communes et l'autre pour la composition provinciale des assemblées nationales.
+Pour répondre à notre question de recherche, nous utiliserons deux ensembles de données : l'un pour la composition fédérale de la Chambre des communes et l'autre pour la composition provinciale des assemblées nationales : Ontario, Quebec, New Brunswick, and Nova Scotia
 
 Pour la composition générationnelle des assemblées nationales du Québec et de l'Ontario, nous utiliserons l'ensemble de données 'Provincial Parliamentary Biographies' de Rivard et al, 2024.
 
@@ -48,8 +48,6 @@ Pour analyser la composition de la cohorte générationnelle au niveau fédéral
 Notre étude sera basée sur une analyse quantitative des ensembles de données présentés, en se concentrant sur les statistiques descriptives telles que la moyenne, la médiane et autres. Cela nous permettra de généraliser et de décrire la composition des cohortes générationnelles des institutions politiques aux niveaux fédéral et provincial. Nous utiliserons la visualisation pour comparer les données entre les cohortes générationnelles et rendre les résultats accessibles.
 
 ## Bibliographie :
-
-Pour organiser ces références par ordre alphabétique des auteurs ou des sources :
 
 -   Banerjee, Sidhartha. 2022. «CAQ Leader Rejects Electoral Reform on Campaign Trail, Says He Will Work with Other Quebec Parties». CBC News. 27 septembre 2022. Consulté le 10 mars 2024. <https://www.cbc.ca/news/canada/montreal/legault-electoral-reform-1.6597622>.
 
