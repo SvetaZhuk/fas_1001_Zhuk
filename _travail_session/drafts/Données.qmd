@@ -430,6 +430,8 @@ ggsave(graph_1,
        width = 20)
 ```
 
+\`
+
 ```{r}
 # Divisé entre le Québec et l'Ontario
 
@@ -526,6 +528,10 @@ provinces |> filter(first_last == "kramp_daryl")
 dim(legislative_age)
 
 legislative_age |> filter(age_start < "20") |> filter(province == "Ontario")
+
+
+write.csv(legislative_age, "legislative_age.csv", row.names = FALSE)
+
 
 ```
 
@@ -866,24 +872,40 @@ library(dplyr)
 
 
 
-# Count the number of members in each generational cohort and gender
-counts <- legislative_age %>%
-  group_by(gen_cohort, gender) %>%
-  summarise(count = n())
+# We calculate the age of the representatives for each year of service
+legislative_age$age <- legislative_age$start_year - legislative_age$year_of_birth
 
-# Calculate the proportions
-counts <- counts %>%
-  mutate(proportion = count / sum(count))
+# Group by year and gen_cohort, then summarize to calculate median age and count
+cohort_summary <- legislative_age %>%
+  group_by(start_year, gen_cohort) %>%
+  summarise(
+    median_age = median(age, na.rm = TRUE),
+    count = n(),
+    .groups = 'drop'
+  )
 
-# Plot the proportions for each generational cohort and gender
-graph_proportions <- ggplot(counts, aes(x = gen_cohort, y = proportion, fill = gender)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Proportion of Legislative Members by Generational Cohort and Gender",
-       x = "Generational Cohort",
-       y = "Proportion of Total Members") +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Pastel1")
+# Calculate the total number of representatives per year to get proportions
+total_counts <- legislative_age %>%
+  group_by(start_year) %>%
+  summarise(total = n(), .groups = 'drop')
 
-graph_proportions
+# Merge to calculate proportions
+cohort_summary <- cohort_summary %>%
+  left_join(total_counts, by = "start_year") %>%
+  mutate(share = count / total)
+
+# Now, we plot the share of each cohort against the median age
+ggplot(cohort_summary, aes(x = median_age, y = share, color = gen_cohort)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(
+    title = "Generational Control of the House",
+    x = "Median Age",
+    y = "Share of House of Representatives (%)"
+  ) +
+  theme_minimal()
+
+
+
 
 ```
